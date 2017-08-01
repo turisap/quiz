@@ -1,0 +1,41 @@
+body, html{
+  padding: 0;
+  margin:0;
+  overflow-x:hidden;
+}
+
+#wholeNav {
+  height: 5em!important;
+}
+
+footer {
+  margin-top: 50px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  height: 4em;
+  background-color: #878787;
+  color: #d8d8d8;
+  p {
+    margin: 0;
+  }
+}
+
+#mainNav {
+  font-size: 18px;
+}
+
+#mainNav ul li.main, #login {
+  border-left: 1px #ccc solid;
+}
+
+#mainNav ul li:hover {
+  background-color: #eeeeee;
+
+}
+
+#last, .right-nav {
+  border-right: 1px #ccc solid;
+  border-left: 1px #ccc solid;
+}
+

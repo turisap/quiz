@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="eng">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>@yield('title')</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/bootstrap_paper_theme.css">
+    <link rel="stylesheet" href="/css/components/base.css">
+    <link rel="stylesheet" href="/css/views/views.css">
+
+</head>
+<body>
+
+@yield('home')
+
+@include('baseviews.navbar')
+
+@if($flash = session('message'))
+    <div class="flash_message alert alert-success" role="alert">
+        {{$flash}}
+    </div>
+@endif
+
+@yield('content')
+
+
+
+<footer>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <p>Quizland 2017</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- Jquery -->
+<script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- MY JS -->
+<script src="/js/my_js.js"></script>
+</body>
+</html>
