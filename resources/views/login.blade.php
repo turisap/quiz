@@ -16,7 +16,9 @@
                     <input class="form-control" name="password" type="password">
                 </div>
                 <button class="btn btn-default" type="submit">Login</button>
+                <a href="/login/facebook" class="btn btn-default" id="loginFacebook">Facebook Login</a>
             </form>
+
         </div>
     </div>
     </section>

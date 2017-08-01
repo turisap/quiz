@@ -16,6 +16,9 @@ Route::post('/login', 'AuthorizationController@login');
 Route::get('/signup', 'AuthorizationController@show');
 Route::post('/signup', 'AuthorizationController@create');
 Route::get('/logout',  'AuthorizationController@logout');
+// facebook
+Route::get('login/facebook', 'FacebookController@redirectToProvider');
+Route::get('login/facebook/callback', 'FacebookController@handleProviderCallback');
 
 //quizes
 Route::get('/myquizzes/{user}', 'QuizzesController@index');
