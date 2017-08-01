@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserRegistration;
 use App\Http\Requests\SignUpUserREquest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -50,6 +51,7 @@ class AuthorizationController extends Controller
         if ($user) {
             auth()->login($user);
             session()->flash('message', 'You\'ve been successfully signed up');
+            event(new UserRegistration($user));
             return redirect()->route('home');
         }
 

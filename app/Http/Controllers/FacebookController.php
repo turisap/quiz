@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserRegistration;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -65,6 +66,8 @@ class FacebookController extends Controller
         $user->save();
 
         Auth::login($user);
+
+        event(new UserRegistration($user));
 
     }
 

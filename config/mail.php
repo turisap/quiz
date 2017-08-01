@@ -120,4 +120,6 @@ return [
         ],
     ],
 
+    'urlStub' => 'http://localhost',
+
 ];
