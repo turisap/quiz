@@ -83,52 +83,47 @@ $(document).ready(function () {
 
     // fade away flash messages
     setTimeout(fadeFlashMessage, 3000);
+});
+// like button ajax
+$('body').on('click', '.like-quiz-btn', function (e) {
 
-    // like button ajax
-    $('.like-quiz-btn').click(function (e) {
+    var quiz_id = $(this).attr('data-content');
+    e.preventDefault();
 
-        var quiz_id = $(this).attr('data-content');
-        e.preventDefault();
-
-        $.ajax({
-            url: '/quizzes/like',
-            data: {
-                quiz_id: quiz_id
-            },
-            type: "GET",
-            success: function success(data) {
-                if (!data.error) {
-                    makeQuizLiked(quiz_id);
-                }
+    $.ajax({
+        url: '/quizzes/like/' + quiz_id,
+        data: {
+            quiz_id: quiz_id
+        },
+        type: "GET",
+        success: function success(data) {
+            if (!data.error) {
+                makeQuizLiked(quiz_id);
             }
-            /*error : function (data) {
-                console.log("Error", data);
-            }*/
-        });
+        }
+        /*error : function (data) {
+            console.log("Error", data);
+        }*/
     });
+});
 
-    // unlike button ajax
-    $('.unlike-quiz-btn').click(function (e) {
+// unlike button ajax
+$('body').on('click', '.unlike-quiz-btn', function (e) {
 
-        var quiz_id = $(this).attr('data-content');
-        e.preventDefault();
+    var quiz_id = $(this).attr('data-content');
+    e.preventDefault();
 
-        $.ajax({
-            url: '/quizzes/unlike/' + quiz_id,
-            data: {
-                quiz_id: quiz_id
-            },
-            type: "GET",
-            success: function success(data) {
-                if (!data.error) {
-                    alert('hui');
-                    /////makeQuizLiked(quiz_id);
-                }
-            },
-            error: function error(data) {
-                console.log("Error", data);
+    $.ajax({
+        url: '/quizzes/unlike/' + quiz_id,
+        type: "GET",
+        success: function success(data) {
+            if (!data.error) {
+                makeQuizUnliked(quiz_id);
             }
-        });
+        }
+        /*error : function (data) {
+            console.log("Error", data);
+         }*/
     });
 });
 
@@ -136,7 +131,13 @@ function makeQuizLiked(quiz_id) {
     $('#' + quiz_id + '-like').remove();
 
     var parent = $('#row-' + quiz_id);
-    parent.append('<a href="" class="like-quiz-btn" data-content="' + quiz_id + '" >UnLike</a>');
+    parent.append('<a href="#"  class="unlike-quiz-btn"  id="' + quiz_id + '-unlike" data-content="' + quiz_id + '" >Unlike</a>');
+}
+
+function makeQuizUnliked(quiz_id) {
+    $('#' + quiz_id + '-unlike').remove();
+    var parent = $('#row-' + quiz_id);
+    parent.append('<a href="#" class="like-quiz-btn"  id="' + quiz_id + '-like" data-content="' + quiz_id + '" >Like</a>');
 }
 
 function fadeFlashMessage() {
