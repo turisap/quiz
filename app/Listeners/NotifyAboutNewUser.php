@@ -3,12 +3,13 @@
 namespace App\Listeners;
 
 use App\Events\UserRegistration;
-use App\Mail\UserNotifyAdmin;
+use App\Notifications\UserRegistered;
 use App\User;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Mail\NewUser;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class NotifyAboutNewUser
 {
@@ -32,9 +33,11 @@ class NotifyAboutNewUser
      */
     public function handle(UserRegistration $event)
     {
-        //$username = $event->user->first_name . ' ' . $event->user->last_name;
-        //Mail::to(env('ADMIN_EMAIL'))->send(new UserNotifyAdmin($username));
+        // notify admins
+        $admins = User::where('admin', 1)->get();
+        Notification::send($admins, new UserRegistered($event->user));
 
+        // send an email to the user
         Mail::to($event->user)->send(new NewUser($event->user));
     }
 }
