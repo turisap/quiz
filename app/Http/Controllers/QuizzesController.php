@@ -37,18 +37,23 @@ class QuizzesController extends Controller
 
 
     /**
-     * @param Quiz $quiz
-     *
-     * repsonde on AJAX request from unlike button
+     * repsonds on AJAX request from like button
      */
     public function like()
     {
         $response = auth()->user()->like(request('quiz_id')) ? true : false;
-
         header('Content-type: application/json'); //
         echo json_encode($response);
     }
 
 
-
+    /**
+     * responds on AJAX request from unlike button
+     */
+    public function unlike()
+    {
+        $response = auth()->user()->unlike(request('quiz_id')) ? true : false;
+        header('Content-type: application/json'); //
+        echo json_encode($response);
+    }
 }

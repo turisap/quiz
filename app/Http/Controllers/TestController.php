@@ -12,6 +12,6 @@ class TestController extends Controller
 {
     public function index()
     {
-        echo request('id');
+
     }
 }

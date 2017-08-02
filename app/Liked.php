@@ -12,8 +12,5 @@ class Liked extends Model
 
     protected $fillable = ['user_id', 'quiz_id'];
 
-    public function likeds()
-    {
-        return $this->belongsToMany(User::class, 'likeds');
-    }
+
 }

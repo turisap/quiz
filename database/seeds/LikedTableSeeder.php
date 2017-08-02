@@ -12,6 +12,6 @@ class LikedTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Liked::class, 500)->create();
+        factory(App\Liked::class, 80)->create();
     }
 }

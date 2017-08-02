@@ -13,4 +13,9 @@ class Quiz extends Model
     {
         return $this->belongsTo(\App\User::class);
     }
+
+    public function likeds()
+    {
+        return $this->belongsToMany(User::class, 'likeds');
+    }
 }

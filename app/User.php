@@ -114,5 +114,10 @@ class User extends Authenticatable
 
         return $liked->save();
     }
+
+    public function unlike($quiz_id)
+    {
+        $liked = $this->likeds()->detach($quiz_id);
+    }
 }
 
