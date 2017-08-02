@@ -19,20 +19,22 @@ $(document).ready(function () {
             type : "GET",
             success : function (data) {
                 if(!data.error) {
-                    alert('success');
+                    makeQuizLiked(quiz_id);
                 }
             },
-            error : function (data) {
+            /*error : function (data) {
                 console.log("Error", data);
-            }
+            }*/
         })
     })
 });
 
+function makeQuizLiked(quiz_id){
+    $('#' + quiz_id + '-like').remove();
 
-
-
-
+    var parent = $('#row-'  + quiz_id);
+    parent.append('<a href="" class="like-quiz-btn" data-content="'+ quiz_id + '" >Like</a>');
+}
 
 
 
