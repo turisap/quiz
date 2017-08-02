@@ -13,13 +13,11 @@ class QuizzesController extends Controller
 {
 
     protected $liked;
-    protected $user;
 
     public function __construct(Liked $liked)
     {
         $this->middleware('auth')->except(['index']);
         $this->liked = $liked;
-        $this->user = auth()->user();
     }
 
 
@@ -40,10 +38,15 @@ class QuizzesController extends Controller
 
     /**
      * @param Quiz $quiz
+     *
+     * repsonde on AJAX request from unlike button
      */
-    public function like(Quiz $quiz)
+    public function like()
     {
-        return $this->user->like($quiz) ? true : false;
+        $response = auth()->user()->like(request('quiz_id')) ? true : false;
+
+        header('Content-type: application/json'); //
+        echo json_encode($response);
     }
 
 

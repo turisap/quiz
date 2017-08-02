@@ -22,7 +22,7 @@ Route::get('login/facebook/callback', 'FacebookController@handleProviderCallback
 
 //quizes
 Route::get('/myquizzes/{user}', 'QuizzesController@index');
-Route::get('/quizzes/like/{quiz}', 'QuizzesController@like');
+Route::get('/quizzes/like', 'QuizzesController@like');
 
 
 // premiums routes

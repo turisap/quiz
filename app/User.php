@@ -105,11 +105,11 @@ class User extends Authenticatable
      *
      * @return false|\Illuminate\Database\Eloquent\Model
      */
-    public function like($quiz)
+    public function like($quiz_id)
     {
         $liked = $this->liked->fill([
             'user_id'  => $this->id,
-            'quiz_id'  => $quiz->id
+            'quiz_id'  => $quiz_id
         ]);
 
         return $liked->save();

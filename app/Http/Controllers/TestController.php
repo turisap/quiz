@@ -12,7 +12,6 @@ class TestController extends Controller
 {
     public function index()
     {
-        $quiz = Quiz::first();
-        $c = QuizzesController::like($quiz);
+        echo request('id');
     }
 }

@@ -10,12 +10,12 @@
                 </div>
                 @can('ableUnlike', $quiz->id)
                     <div class="col-md-6">
-                        <a href="/quizzes/unlike/{{$quiz->id}}">Unlike</a>
+                        <a href="" class="unlike-quiz-btn" data-content="{{$quiz->id}}">Unlike</a>
                     </div>
                 @endcan
                 @can('ableLike', $quiz->id)
                     <div class="col-md-6">
-                        <a href="/quizzes/like/{{$quiz->id}}">Like</a>
+                        <a href="" class="like-quiz-btn" data-content="{{$quiz->id}}" >Like</a>
                     </div>
                 @endcan
             </div>
