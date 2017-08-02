@@ -8,12 +8,12 @@
                 <div class="col-md-6">
                     <p>{{$quiz->views}} views</p>
                 </div>
-                @can('unlike', $quiz->id)
+                @can('ableUnlike', $quiz->id)
                     <div class="col-md-6">
                         <a href="/quizzes/unlike/{{$quiz->id}}">Unlike</a>
                     </div>
                 @endcan
-                @can('like', $quiz->id)
+                @can('ableLike', $quiz->id)
                     <div class="col-md-6">
                         <a href="/quizzes/like/{{$quiz->id}}">Like</a>
                     </div>

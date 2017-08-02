@@ -62,7 +62,7 @@ class User extends Authenticatable
      * @returns boolean
      *
      */
-    public function unlike($id)
+    public function ableUnlike($id)
     {
         $likeds = $this->likeds->pluck('quiz_id');
 
@@ -83,9 +83,9 @@ class User extends Authenticatable
      * @returns boolean
      *
      */
-    public function like($quiz_id)
+    public function ableLike($quiz_id)
     {
-        return ! $this->unlike($quiz_id);
+        return ! $this->ableUnlike($quiz_id);
     }
 }
 
