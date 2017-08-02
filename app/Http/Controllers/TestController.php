@@ -12,9 +12,7 @@ class TestController extends Controller
 {
     public function index()
     {
-        /*$user = User::first();
-        $mail = new NewUser($user);
-        dd($mail->url);*/
-        dd(config('mail.urlStub'));
+        $quiz = Quiz::first();
+        $c = QuizzesController::like($quiz);
     }
 }

@@ -33,11 +33,11 @@ class AuthServiceProvider extends ServiceProvider
 
         // show or not of the unlike button
         Gate::define('ableUnlike', function ($user, $quiz_id) {
-            return $user->ableLike($quiz_id);
+            return $user->ableUnLike($quiz_id);
         });
 
         Gate::define('ableLike', function ($user, $quiz_id) {
-            return $user->ableUnlike($quiz_id);
+            return $user->ablelike($quiz_id);
         });
     }
 }

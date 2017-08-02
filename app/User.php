@@ -4,11 +4,12 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Liked;
+use Illuminate\Support\Facades\App;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
 
     /**
      * The attributes that are mass assignable.
@@ -27,6 +28,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    protected $liked;
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->liked = App::make('App\Liked');
+    }
 
 
     /**
@@ -86,6 +95,24 @@ class User extends Authenticatable
     public function ableLike($quiz_id)
     {
         return ! $this->ableUnlike($quiz_id);
+    }
+
+
+    /**
+     * @param $quiz
+     *
+     * Adds a given quiz to user's liked ones
+     *
+     * @return false|\Illuminate\Database\Eloquent\Model
+     */
+    public function like($quiz)
+    {
+        $liked = $this->liked->fill([
+            'user_id'  => $this->id,
+            'quiz_id'  => $quiz->id
+        ]);
+
+        return $liked->save();
     }
 }
 
