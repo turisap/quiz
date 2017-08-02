@@ -8,16 +8,14 @@
                 <div class="col-md-6">
                     <p>{{$quiz->views}} views</p>
                 </div>
-                @can('ableUnlike', $quiz->id)
-                    <div class="col-md-6" id="{{$quiz->id}}-unlike">
-                        <a href="" class="unlike-quiz-btn" data-content="{{$quiz->id}}">Unlike</a>
-                    </div>
-                @endcan
-                @can('ableLike', $quiz->id)
-                    <div class="col-md-6" id="{{$quiz->id}}-like">
-                        <a href="" class="like-quiz-btn" data-content="{{$quiz->id}}" >Like</a>
-                    </div>
-                @endcan
+                <div class="col-md-6">
+                    @can('ableUnlike', $quiz->id)
+                        <a href="" class="unlike-quiz-btn" data-content="{{$quiz->id}}" id="{{$quiz->id}}-unlike">Unlike</a>
+                    @endcan
+                    @can('ableLike', $quiz->id)
+                        <a href="" class="like-quiz-btn" data-content="{{$quiz->id}}" id="{{$quiz->id}}-like">Like</a>
+                    @endcan
+                </div>
             </div>
         </div>
     </div>

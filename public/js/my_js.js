@@ -111,7 +111,7 @@ function makeQuizLiked(quiz_id) {
     $('#' + quiz_id + '-like').remove();
 
     var parent = $('#row-' + quiz_id);
-    parent.append('<a href="" class="like-quiz-btn" data-content="' + quiz_id + '" >Like</a>');
+    parent.append('<a href="" class="like-quiz-btn" data-content="' + quiz_id + '" >UnLike</a>');
 }
 
 function fadeFlashMessage() {
