@@ -12,6 +12,9 @@ class TestController extends Controller
 {
     public function index()
     {
-
+        //$quiz = Quiz::find(request('quiz_id'));
+        //dd($quiz);
+        /*$quiz = Quiz::find(request('quiz_id'));
+        dd($quiz->unlike() ? true : false);*/
     }
 }

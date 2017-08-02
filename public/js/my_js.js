@@ -84,6 +84,7 @@ $(document).ready(function () {
     // fade away flash messages
     setTimeout(fadeFlashMessage, 3000);
 
+    // like button ajax
     $('.like-quiz-btn').click(function (e) {
 
         var quiz_id = $(this).attr('data-content');
@@ -103,6 +104,30 @@ $(document).ready(function () {
             /*error : function (data) {
                 console.log("Error", data);
             }*/
+        });
+    });
+
+    // unlike button ajax
+    $('.unlike-quiz-btn').click(function (e) {
+
+        var quiz_id = $(this).attr('data-content');
+        e.preventDefault();
+
+        $.ajax({
+            url: '/quizzes/unlike/' + quiz_id,
+            data: {
+                quiz_id: quiz_id
+            },
+            type: "GET",
+            success: function success(data) {
+                if (!data.error) {
+                    alert('hui');
+                    /////makeQuizLiked(quiz_id);
+                }
+            },
+            error: function error(data) {
+                console.log("Error", data);
+            }
         });
     });
 });

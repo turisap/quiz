@@ -28,6 +28,8 @@ class QuizzesController extends Controller
 
         $liked = QuizRepozitory::getAllUsersQuizzes($ids);
 
+        //dd($liked);
+
         if (Gate::denies('my_quizzes', $user->id)) {
             abort(403, 'Sorry, you don\'t have access to this page');
         }
@@ -50,10 +52,10 @@ class QuizzesController extends Controller
     /**
      * responds on AJAX request from unlike button
      */
-    public function unlike()
+    public function unlike(Quiz $quiz)
     {
-        $response = auth()->user()->unlike(request('quiz_id')) ? true : false;
-        header('Content-type: application/json'); //
+        $response = $quiz->unlike();
+        header('Content-type: application/json');
         echo json_encode($response);
     }
 }
