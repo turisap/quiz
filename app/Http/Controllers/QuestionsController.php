@@ -31,7 +31,6 @@ class QuestionsController extends Controller
 
         $current_question = request('question') ?? 0;
         $question = array_shift($questions);
-        //dd($question);
         $question_json = json_encode($question, JSON_PRETTY_PRINT);
 
         return view('quiz', compact(['quiz', 'current_question', 'question', 'questions', 'question_json']));

@@ -99,7 +99,7 @@
                            }
                            },
                            error : function (question) {
-                               //console.log("Error", question);
+                               console.log("Error", question);
                            }
                        });
                   } else {
@@ -132,6 +132,8 @@
             $('#label2').html(question.answer2);
             $('#label3').html(question.answer3);
             $('#label4').html(question.answer4);
+            answer = question.answer;
+            nextQuestion ++;
         }
 
 
