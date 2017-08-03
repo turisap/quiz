@@ -69,8 +69,10 @@
 @section('footer')
     <script>
 
-        var question = {!! $json !!};
+        var question = {!! $question_json !!};
         var nextQuestion = parseInt({{$current_question}}) + 1;
+
+
 
         $(document).ready(function(){
 
@@ -81,19 +83,25 @@
 
             $('#checkAnswer').on('click', function (e) {
 
+
                   if(checkAnswer()){
                       $.ajax({
-                           url : '/quizzes/ajax/' + question.quiz_id + '?question=' + nextQuestion,
+                           url : '/quizzes/ajax/' + question.quiz_id,
                            type : "GET",
+                           data : {
+                             question : nextQuestion
+                           },
                            success : function (data) {
                            if(!data.error) {
-
+                               console.log(data);
                            }
                            },
                            error : function (data) {
-                           console.log("Error", data);
+                               console.log("Error", data);
                            }
                        });
+                  } else {
+                      console.log('wrong answer');
                   }
 
                   e.preventDefault();
@@ -101,15 +109,26 @@
 
         });
 
+
         function checkAnswer() {
+            var valid;
             $('.answer').each(function(){
                 if($(this).is(':checked')){
                     var id = $(this).prop('id');
                     if(id != ''){
-                        return (id == question.answer);
+                        valid = (id == question.answer);
+
                     }
                 }
             });
+            return valid;
         }
+
+
+
+
+
+
+
     </script>
 @endsection

@@ -27,6 +27,7 @@ Route::get('/quizzes/unlike/{quiz}', 'QuizzesController@unlike');
 
 //Play a Quiz
 Route::get('/quizzes/play/{quiz}', 'QuestionsController@play');
+Route::get('/quizzes/ajax/{quiz}', 'QuestionsController@getAjax');
 
 
 // premiums routes
