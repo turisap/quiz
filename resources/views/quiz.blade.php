@@ -71,7 +71,7 @@
 
         var json = {!! $question_json !!};
         var answer = json.answer;
-        var quizId = json.quiz_id
+        var quizId = json.quiz_id;
         var nextQuestion = parseInt({{$current_question}}) + 1;
 
         // enable button on radio check
@@ -95,11 +95,16 @@
                            success : function (question) {
                            if(!question.error) {
                                //console.log(JSON.parse(question));
-                               fillNewQuestion(JSON.parse(question));
+                               var respond = JSON.parse(question);
+                               if(respond) { //if respond isn't false
+                                   fillNewQuestion(respond);
+                               } else {
+                                   finishQuiz();
+                               }
                            }
                            },
                            error : function (question) {
-                               console.log("Error", question);
+                               console.log("ERROR", question);
                            }
                        });
                   } else {
@@ -136,11 +141,18 @@
             nextQuestion ++;
         }
 
-
-
-
-
-
+        function finishQuiz() {
+            $('#currentQuestion').html('You just finished this quiz! Congratulations!');
+            $('#questionName').remove();
+            $('#label1').remove();
+            $('#label2').remove();
+            $('#label3').remove();
+            $('#label4').remove();
+            $('#1').remove();
+            $('#2').remove();
+            $('#3').remove();
+            $('#4').remove();
+        }
 
     </script>
 @endsection

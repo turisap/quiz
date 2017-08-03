@@ -48,6 +48,7 @@ class QuestionsController extends Controller
     {
         $current_question = request('question') ?? 0;
 
+
         if ($current_question < count($quiz->questions->toArray())) {
             $question = $quiz->questions[$current_question];
             $question->currentQuestion = $current_question;
