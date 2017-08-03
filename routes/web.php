@@ -30,3 +30,11 @@ Route::get('/quizzes/unlike/{quiz}', 'QuizzesController@unlike');
 Route::group(['prefix' => 'premium'], function () {
     Route::get('/', 'PremiumsController@index');
 });
+
+// PAYPAL
+// Show payment form
+Route::get('/payment/add-funds/paypal', 'PaypalController@showForm');
+// Post payment details for store/process API request
+Route::post('/payment/add-funds/paypal', 'PaypalController@store');
+// Handle status
+Route::get('/payment/add-funds/paypal/status', 'PaypalController@getPaymentStatus');
