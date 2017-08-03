@@ -20,8 +20,8 @@ class CreateQuestionsTable extends Migration
             $table->text('question');
             $table->string('answer_1');
             $table->string('answer_2');
-            $table->string('answer_3');
-            $table->string('answer_4');
+            $table->string('answer_3')->nullable();
+            $table->string('answer_4')->nullable();
             $table->integer('right_answer');
         });
     }
