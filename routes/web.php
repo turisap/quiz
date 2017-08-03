@@ -12,7 +12,7 @@ Route::group(['prefix' => 'categories'], function () {
 
 // authorization
 Route::get('/login', 'AuthorizationController@index');
-Route::post('/login', 'AuthorizationController@login');
+Route::post('/login', 'AuthorizationController@login')->name('login');
 Route::get('/signup', 'AuthorizationController@show');
 Route::post('/signup', 'AuthorizationController@create');
 Route::get('/logout',  'AuthorizationController@logout');

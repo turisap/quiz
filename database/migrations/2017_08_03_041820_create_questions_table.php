@@ -18,11 +18,11 @@ class CreateQuestionsTable extends Migration
             $table->integer('quiz_id')->unsigned();
             $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('cascade');
             $table->text('question');
-            $table->string('answer_1');
-            $table->string('answer_2');
-            $table->string('answer_3')->nullable();
-            $table->string('answer_4')->nullable();
-            $table->integer('right_answer');
+            $table->string('answer1');
+            $table->string('answer2');
+            $table->string('answer3')->nullable();
+            $table->string('answer4')->nullable();
+            $table->integer('answer');
         });
     }
 

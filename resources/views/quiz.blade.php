@@ -18,47 +18,47 @@
                     <h3>Question {{$current_question}}</h3>
                     <p class="lead">{{$question['question']}}?</p>
                     <hr>
-                    @if($question['answer_1'])
+                    @if($question['answer1'])
                         <div class="answer row">
                             <div class="col-md-2">
-                                <input class="form-control" type="radio" name="answer">
+                                <input class="answer" type="radio" name="answer" id="1">
                             </div>
                             <div class="col-md-10">
-                                <label>{{$question['answer_1']}}</label>
+                                <label>{{$question['answer1']}}</label>
                             </div>
                         </div>
                     @endif
-                    @if($question['answer_2'])
+                    @if($question['answer2'])
                         <div class="answer row">
                             <div class="col-md-2">
-                                <input class="form-control" type="radio" name="answer">
+                                <input class="answer" type="radio" name="answer" id="2">
                             </div>
                             <div class="col-md-10">
-                                <label>{{$question['answer_2']}}</label>
+                                <label>{{$question['answer2']}}</label>
                             </div>
                         </div>
                     @endif
-                    @if($question['answer_3'])
+                    @if($question['answer3'])
                         <div class="answer row">
                             <div class="col-md-2">
-                                <input class="form-control" type="radio" name="answer">
+                                <input class="answer" type="radio" name="answer" id="3">
                             </div>
                             <div class="col-md-10">
-                                <label>{{$question['answer_3']}}</label>
+                                <label>{{$question['answer3']}}</label>
                             </div>
                         </div>
                     @endif
-                    @if($question['answer_4'])
+                    @if($question['answer4'])
                         <div class="answer row">
                             <div class="col-md-2">
-                                <input class="form-control" type="radio" name="answer">
+                                <input class="answer" type="radio" name="answer" id="4">
                             </div>
                             <div class="col-md-10">
-                                <label>{{$question['answer_4']}}</label>
+                                <label>{{$question['answer4']}}</label>
                             </div>
                         </div>
                     @endif
-                    <a class="btn btn default pull-right" href="" id="checkAnswer">Check Anser</a>
+                    <a class="btn btn default pull-right" href="" id="checkAnswer" disabled>Check Answer</a>
                 </div>
             </div>
 
@@ -68,26 +68,48 @@
 
 @section('footer')
     <script>
+
         var question = {!! $json !!};
+        var nextQuestion = parseInt({{$current_question}}) + 1;
+
         $(document).ready(function(){
 
-            $('#checkAnswer').on('click', function (e) {
-                e.preventDefault();
+            // enable button on radio check
+            $('.answer').on('change', function () {
+                $('#checkAnswer').removeAttr('disabled');
+            });
 
-                $.ajax({
-                    url : '/quizzes/unlike/' + quiz_id,
-                    type : "GET",
-                    success : function (data) {
-                        if(!data.error) {
-                            makeQuizUnliked(quiz_id);
-                        }
-                    },
-                    /*error : function (data) {
-                     console.log("Error", data);
-                     }*/
-                })
+            $('#checkAnswer').on('click', function (e) {
+
+                  if(checkAnswer()){
+                      $.ajax({
+                           url : '/quizzes/ajax/' + question.quiz_id + '?question=' + nextQuestion,
+                           type : "GET",
+                           success : function (data) {
+                           if(!data.error) {
+
+                           }
+                           },
+                           error : function (data) {
+                           console.log("Error", data);
+                           }
+                       });
+                  }
+
+                  e.preventDefault();
             })
 
-        })
+        });
+
+        function checkAnswer() {
+            $('.answer').each(function(){
+                if($(this).is(':checked')){
+                    var id = $(this).prop('id');
+                    if(id != ''){
+                        return (id == question.answer);
+                    }
+                }
+            });
+        }
     </script>
 @endsection
