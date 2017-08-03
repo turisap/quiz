@@ -25,6 +25,9 @@ Route::get('/myquizzes/{user}', 'QuizzesController@index');
 Route::get('/quizzes/like/{quiz}', 'QuizzesController@like');
 Route::get('/quizzes/unlike/{quiz}', 'QuizzesController@unlike');
 
+//Play a Quiz
+Route::get('/quizzes/play/{quiz}', 'QuestionsController@play');
+
 
 // premiums routes
 Route::group(['prefix' => 'premium'], function () {

@@ -21,7 +21,14 @@ class QuizzesController extends Controller
     }
 
 
-
+    /**
+     * Shows my quizzes page
+     *
+     * @param User $user
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     */
     public function index(User $user)
     {
         $ids = $user->likeds->pluck('quiz_id')->toArray();
@@ -36,6 +43,7 @@ class QuizzesController extends Controller
 
         return view('my_quizzes', compact('liked'));
     }
+
 
 
     /**

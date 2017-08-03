@@ -2,6 +2,7 @@
     <div class="panel panel-default quiz-panel">
         <div class="panel-heading quiz-photo">PHOTO</div>
         <div class="panel-body">
+            <a href="/quizzes/{{$quiz->id}}" class="quiz-link">
             <h4>{{str_limit($quiz->title, 20)}}</h4>
             <p>{{$quiz->author->first_name}} {{$quiz->author->last_name}}</p>
             <div class="row" >
@@ -17,6 +18,7 @@
                     @endcan
                 </div>
             </div>
+            </a>
         </div>
     </div>
 </div>

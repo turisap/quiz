@@ -6,22 +6,36 @@ use Illuminate\Database\Eloquent\Model;
 
 class Quiz extends Model
 {
-    /*
-     * relationships
+    /**
+     * Relationships with users
      */
     public function author()
     {
         return $this->belongsTo(\App\User::class);
     }
 
+
+
     /**
-     * Relationships
+     * Relationships with users (liked quizzes)
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function likeds()
     {
         return $this->belongsToMany(User::class, 'likeds');
+    }
+
+
+
+    /**
+     * Relationship with questions
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
     }
 
 

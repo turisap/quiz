@@ -54,3 +54,16 @@ $factory->define(App\Liked::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Question::class, function (Faker\Generator $faker) {
+
+    return [
+        'quiz_id'      => $faker->biasedNumberBetween(1, 40),
+        'question'        => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'answer_1'     => $faker->word,
+        'answer_2'     => $faker->word,
+        'answer_3'     => $faker->word,
+        'answer_4'     => $faker->word,
+        'right_answer' => $faker->biasedNumberBetween(1, 4)
+    ];
+});
+

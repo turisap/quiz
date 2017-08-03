@@ -14,11 +14,11 @@ class CreateLikedsTable extends Migration
     public function up()
     {
         Schema::create('likeds', function (Blueprint $table) {
-                $table->increments('id');
                 $table->integer('user_id');
                 $table->integer('quiz_id');
                 $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
                 $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('cascade');
+                $table->primary(['user_id', 'quiz_id']);
         });
     }
 
