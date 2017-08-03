@@ -14,8 +14,8 @@
     <section id="quizPlay">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6 col-md-offset-3" style="background: gainsboro;">
-                    <h3 id="currentQuestion">Question {{$current_question}}</h3>
+                <div class="col-md-6 col-md-offset-3 right-answer" id="wrapper" style="background: gainsboro;">
+                    <h3 id="currentQuestion">Question {{$current_question + 1}}</h3>
                     <p class="lead" id="questionName">{{$question['question']}}?</p>
                     <hr>
                     @if($question['answer1'])
@@ -108,7 +108,7 @@
                            }
                        });
                   } else {
-                      console.log('wrong answer');
+                      wrongAnswer();
                   }
 
                   e.preventDefault();
@@ -124,14 +124,29 @@
                     var id = $(this).prop('id');
                     if(id != ''){
                         valid = (id == answer);
+                        if($('#wrapper').hasClass('wrong-answer')){
+                            $('#wrapper').removeClass('wrong-answer').addClass('right-answer');
+                        }
                     }
                 }
             });
             return valid;
         }
 
+        function wrongAnswer(){
+            if($('#wrapper').hasClass('right-answer')){
+                $('#wrapper').removeClass('right-answer');
+            }
+            if( ! $('#wrapper').hasClass('wrong-answer')){
+                $('#wrapper').addClass('wrong-answer');
+            } else {
+                $('#wrapper').removeClass('wrong-answer').delay(5000);
+                $('#wrapper').addClass('wrong-answer');
+            }
+        }
+
         function fillNewQuestion(question){
-            $('#currentQuestion').html('Question ' + question.currentQuestion);
+            $('#currentQuestion').html('Question ' + Math.abs(parseInt(question.currentQuestion) + 1));
             $('#questionName').html(question.question);
             $('#label1').html(question.answer1);
             $('#label2').html(question.answer2);

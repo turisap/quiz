@@ -4,6 +4,22 @@
   height: 300px;
 }
 
+/* ======================= UTILITY CLASSES ========================= */
+
+.wrong-answer {
+  -webkit-box-shadow: 0 0 30px rgba(255, 129, 113, 0.69) !important;
+          box-shadow: 0 0 30px rgba(255, 129, 113, 0.69) !important;
+  -webkit-transition: all 0.5s ease-in-out !important;
+  transition: all 0.5s ease-in-out !important;
+}
+
+.right-answer {
+  -webkit-box-shadow: 0 0 30px rgba(124, 255, 114, 0.69) !important;
+          box-shadow: 0 0 30px rgba(124, 255, 114, 0.69) !important;
+  -webkit-transition: all 0.5s ease-in-out !important;
+  transition: all 0.5s ease-in-out !important;
+}
+
 /* ======================== HOMEPAGE STYLES ========================= */
 
 #homelanding {
