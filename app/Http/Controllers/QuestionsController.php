@@ -29,12 +29,10 @@ class QuestionsController extends Controller
             ->get()
             ->toArray();
 
-        //dd($questions);
-
         $current_question = request('question') ?? 0;
         $question = array_shift($questions);
+        //dd($question);
         $question_json = json_encode($question, JSON_PRETTY_PRINT);
-        //dd($json);
 
         return view('quiz', compact(['quiz', 'current_question', 'question', 'questions', 'question_json']));
     }
@@ -53,14 +51,9 @@ class QuestionsController extends Controller
 
         if ($current_question < count($quiz->questions->toArray())) {
             $question = $quiz->questions[$current_question];
+            $question->currentQuestion = $current_question;
 
-            $current_question = [
-                'current_question' => $current_question
-            ];
-
-            $info = array($question, $current_question);
-
-            return json_encode($info, JSON_PRETTY_PRINT);
+            return json_encode($question, JSON_PRETTY_PRINT);
         }
         return json_encode(false);
     }
