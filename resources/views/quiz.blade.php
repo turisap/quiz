@@ -122,14 +122,17 @@
          * Checks whether an answer was right
          */
         function checkAnswer() {
+            wrapper.dequeue();
             var valid;
             $('.answer').each(function(){
                 if($(this).is(':checked')){
                     var id = $(this).prop('id');
                     if(id != ''){
                         valid = (id == answer);
-                        if(valid && wrapper.hasClass('wrong-answer')){
-                            wrapper.removeClass('wrong-answer').addClass('right-answer');
+                        if(valid){
+                            wrapper.addClass('right-answer').delay(1000).queue(function () {
+                                wrapper.removeClass('right-answer');
+                            });
                         }
                     }
                 }
