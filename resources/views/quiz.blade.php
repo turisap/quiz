@@ -118,6 +118,9 @@
         });
 
 
+        /**
+         * Checks whether an answer was right
+         */
         function checkAnswer() {
             var valid;
             $('.answer').each(function(){
@@ -134,20 +137,29 @@
             return valid;
         }
 
+        /**
+         * Adds some styling in case of wrong answer
+         */
+
         function wrongAnswer(){
+            wrapper.dequeue();
             if(wrapper.hasClass('right-answer')){
                 wrapper.removeClass('right-answer');
             }
-            console.log(wrapper.hasClass('wrong-answer'));
-            if(wrapper.hasClass('wrong-answer') !== true){
-                wrapper.addClass('wrong-answer');
-                alert('4');
-            } else {
-                wrapper.removeClass('wrong-answer').delay(3000);
-                wrapper.addClass('wrong-answer');
-                alert('piupiu');
+            //console.log(wrapper.hasClass('wrong-answer'));
+            if(!wrapper.hasClass('wrong-answer')){
+                wrapper.addClass('wrong-answer').delay(1000).queue(function(){
+                    wrapper.removeClass('wrong-answer');
+                });
             }
         }
+
+
+        /**
+         * Fills new question
+         *
+         * @param question
+         */
 
         function fillNewQuestion(question){
             $('#currentQuestion').html('Question ' + Math.abs(parseInt(question.currentQuestion) + 1));
@@ -160,6 +172,10 @@
             nextQuestion ++;
         }
 
+
+        /**
+         * Finishes quiz (shows the final page)
+         */
         function finishQuiz() {
             $('#currentQuestion').html('You just finished this quiz! Congratulations!');
             $('#questionName').remove();
