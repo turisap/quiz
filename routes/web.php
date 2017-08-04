@@ -1,6 +1,7 @@
 <?php
 
 Route::get('/test', 'TestController@index');
+Route::get('/p', 'PaymentsController@details');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
@@ -34,4 +35,5 @@ Route::get('/quizzes/ajax/{quiz}', 'QuestionsController@getAjax');
 Route::group(['prefix' => 'premium'], function () {
     Route::get('/', 'PremiumsController@index');
     Route::get('/success', 'PremiumsController@success');
+    Route::get('/checkout', 'PaymentsController@checkout');
 });

@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Mail\NewUser;
-use App\Quiz;
-use App\User;
-use Illuminate\Http\Request;
+use PayPal\Rest\ApiContext as PayPal;
 
 class TestController extends Controller
 {
@@ -17,6 +13,6 @@ class TestController extends Controller
         /*$quiz = Quiz::find(request('quiz_id'));
         dd($quiz->unlike() ? true : false);*/
 
-        return view('test');
+        dd();
     }
 }
