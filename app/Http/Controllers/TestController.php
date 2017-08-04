@@ -16,5 +16,7 @@ class TestController extends Controller
         //dd($quiz);
         /*$quiz = Quiz::find(request('quiz_id'));
         dd($quiz->unlike() ? true : false);*/
+
+        return view('test');
     }
 }

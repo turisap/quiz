@@ -14,7 +14,7 @@
     <section id="quizPlay">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6 col-md-offset-3 right-answer" id="wrapper" style="background: gainsboro;">
+                <div class="col-md-6 col-md-offset-3" id="wrapper" style="background: gainsboro;">
                     <h3 id="currentQuestion">Question {{$current_question + 1}}</h3>
                     <p class="lead" id="questionName">{{$question['question']}}?</p>
                     <hr>
@@ -73,6 +73,7 @@
         var answer = json.answer;
         var quizId = json.quiz_id;
         var nextQuestion = parseInt({{$current_question}}) + 1;
+        var wrapper  = $('#wrapper');
 
         // enable button on radio check
         $('.answer').on('change', function () {
@@ -124,8 +125,8 @@
                     var id = $(this).prop('id');
                     if(id != ''){
                         valid = (id == answer);
-                        if($('#wrapper').hasClass('wrong-answer')){
-                            $('#wrapper').removeClass('wrong-answer').addClass('right-answer');
+                        if(valid && wrapper.hasClass('wrong-answer')){
+                            wrapper.removeClass('wrong-answer').addClass('right-answer');
                         }
                     }
                 }
@@ -134,14 +135,17 @@
         }
 
         function wrongAnswer(){
-            if($('#wrapper').hasClass('right-answer')){
-                $('#wrapper').removeClass('right-answer');
+            if(wrapper.hasClass('right-answer')){
+                wrapper.removeClass('right-answer');
             }
-            if( ! $('#wrapper').hasClass('wrong-answer')){
-                $('#wrapper').addClass('wrong-answer');
+            console.log(wrapper.hasClass('wrong-answer'));
+            if(wrapper.hasClass('wrong-answer') !== true){
+                wrapper.addClass('wrong-answer');
+                alert('4');
             } else {
-                $('#wrapper').removeClass('wrong-answer').delay(5000);
-                $('#wrapper').addClass('wrong-answer');
+                wrapper.removeClass('wrong-answer').delay(3000);
+                wrapper.addClass('wrong-answer');
+                alert('piupiu');
             }
         }
 
