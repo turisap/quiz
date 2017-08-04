@@ -122,8 +122,8 @@
          * Checks whether an answer was right
          */
         function checkAnswer() {
-            wrapper.dequeue();
             var valid;
+            wrapper.dequeue();
             $('.answer').each(function(){
                 if($(this).is(':checked')){
                     var id = $(this).prop('id');
