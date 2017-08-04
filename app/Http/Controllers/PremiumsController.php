@@ -15,4 +15,10 @@ class PremiumsController extends Controller
         return view('premium_landing');
     }
 
+    public function success()
+    {
+        return view('premium-success');
+
+    }
+
 }
