@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -113,6 +114,19 @@ class User extends Authenticatable
         ]);
 
         return $liked->save();
+    }
+
+
+    /**
+     * @param $id
+     *
+     * Updates user to premium after payments
+     */
+    public static function updateToPremium($id)
+    {
+        DB::table('users')->where('id', $id)
+                          ->update(['premium' => 1]);
+
     }
 
 

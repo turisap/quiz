@@ -34,6 +34,6 @@ Route::get('/quizzes/ajax/{quiz}', 'QuestionsController@getAjax');
 // premiums routes
 Route::group(['prefix' => 'premium'], function () {
     Route::get('/', 'PremiumsController@index');
-    Route::get('/success', 'PremiumsController@success');
     Route::get('/checkout', 'PaymentsController@checkout');
+    Route::get('/paid', 'PaymentsController@execute');
 });

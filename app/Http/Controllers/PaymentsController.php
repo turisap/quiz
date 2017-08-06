@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\User;
 use PayPal\Api\Item;
 use PayPal\Api\Payer;
+use PayPal\Api\PaymentExecution;
 use PayPal\Exception\PayPalConnectionException;
 use PayPal\Rest\ApiContext as PayPal;
 use PayPal\Api\ItemList;
@@ -13,6 +14,7 @@ use PayPal\Api\Amount;
 use PayPal\Api\Transaction;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Payment;
+
 
 class PaymentsController extends Controller
 {
@@ -66,12 +68,44 @@ class PaymentsController extends Controller
         }  catch (PayPalConnectionException $ex) {
             echo $ex->getCode(); // Prints the Error Code
             echo $ex->getData(); // Prints the detailed error message
-            die($ex);
+            //die($ex);
         } catch (\Exception $ex) {
-            die($ex);
+            //die($ex);
         }
 
-        echo $approvalUrl = $this->payment->getApprovalLink();
+        $approvalUrl = $this->payment->getApprovalLink();
+        return redirect($approvalUrl);
+    }
+
+
+    public function execute()
+    {
+        $payer_id = request('PayerID') ?? false;
+        $paymentId = request('paymentId') ?? false;
+        $payment_status = (bool)request('success') ?? false;
+        $user_id = request('user_id') ?? false;
+
+        //dd($user_id);
+
+        if ($payment_status && $payer_id && $paymentId) {
+            $payment = Payment::get($paymentId, $this->paypal);
+
+            $execute = new PaymentExecution();
+            $execute->setPayerId($payer_id);
+
+            try {
+                $result = $payment->execute($execute, $this->paypal);
+            } catch (\Exception $e) {
+                $data = \GuzzleHttp\json_encode($e->getData());
+                dd($data);
+            }
+
+            //update user to a premium one
+            User::updateToPremium($user_id);
+        }
+
+        echo 'Hura, I am premium now';
+        //return view('premium-success', compact('payment_status'));
     }
 
 
@@ -169,8 +203,8 @@ class PaymentsController extends Controller
      */
     public function redirectUrls()
     {
-        $this->redirectUrls->setReturnUrl(config('paypal.redirect_url') . '?success=true')
-             ->setCancelUrl(config('paypal.redirect_url') . '?success=false');
+        $this->redirectUrls->setReturnUrl(config('paypal.redirect_url') . '?success=true&user_id=' . auth()->user()->id)
+             ->setCancelUrl(config('paypal.redirect_url') . '?success=false&user_id=' . auth()->user()->id);
         return $this->redirectUrls;
     }
 
