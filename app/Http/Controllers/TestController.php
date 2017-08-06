@@ -13,6 +13,6 @@ class TestController extends Controller
         /*$quiz = Quiz::find(request('quiz_id'));
         dd($quiz->unlike() ? true : false);*/
 
-        dd();
+        dd(config('paypal.redirect_url'));
     }
 }

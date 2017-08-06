@@ -4,7 +4,7 @@ return [
     // set your paypal credential
     'client_id' => env('PAYPAL_CLIENT_ID', ''),
     'secret' => env('PAYPAL_SECRET', ''),
-    'premium_cost' => env('PAYPAL_PREMIUM_COST', 10),
+    'premium_cost' => env('PAYPAL_PREMIUM_COST', 10.0),
     'redirect_url' => 'http://localhost/premium/paid',
 
     /**

@@ -4,9 +4,30 @@
 
 
 <script>
-    $(document).ready(function () {
-        $('#test').click(function(){
-            console.log($(this).hasClass('foof'));
-        })
-    })
+
+    $(document).ready(function(){
+
+        var input = 'alla';
+        var words = input.split(' ');
+        var characters = [];
+
+        words.forEach(function(item){
+            //console.log(item.split(''));
+            var c = item.split('');
+            c.forEach(function (character) {
+                characters.push(character);
+            })
+        });
+
+        for(var i = 0; i < characters.length; i++){
+            if(characters[i] != characters[characters.length - i]){
+                console.log(characters[1]);
+            }
+        }
+
+        console.log(true)
+
+    });
+
+
 </script>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use PayPal\Api\Item;
 use PayPal\Api\Payer;
+use PayPal\Exception\PayPalConnectionException;
 use PayPal\Rest\ApiContext as PayPal;
 use PayPal\Api\ItemList;
 use PayPal\Api\Details;
@@ -57,22 +58,21 @@ class PaymentsController extends Controller
 
     public function checkout()
     {
+
+        //dd($this->amount());
+
         try {
             $this->payment()->create($this->paypal);
-        } catch (\Exception $e) {
-            die($e);
+        }  catch (PayPalConnectionException $ex) {
+            echo $ex->getCode(); // Prints the Error Code
+            echo $ex->getData(); // Prints the detailed error message
+            die($ex);
+        } catch (\Exception $ex) {
+            die($ex);
         }
 
         echo $approvalUrl = $this->payment->getApprovalLink();
     }
-
-
-
-
-
-
-
-
 
 
 
@@ -118,7 +118,7 @@ class PaymentsController extends Controller
      */
     public function details($shipping = 0)
     {
-        $this->details->setShipping($shipping)->setSubtotal($this->getTotal($shipping));
+        $this->details->setShipping($shipping)->setSubtotal($this->price);
         return $this->details;
     }
 
@@ -142,7 +142,7 @@ class PaymentsController extends Controller
     public function amount()
     {
         $this->amount->setCurrency('USD')
-             ->setTotal($this->getTotal($shipping = 0))
+             ->setTotal($this->price)
              ->setDetails($this->details);
         return $this->amount;
     }
@@ -153,8 +153,8 @@ class PaymentsController extends Controller
      */
     public function transaction()
     {
-        $this->transaction->setAmount($this->amount)
-             ->setItemList($this->item_list)
+        $this->transaction->setAmount($this->amount())
+             ->setItemList($this->itemList())
              ->setDescription($description = 'Premium Membership in Quizland')
              ->setInvoiceNumber($token = uniqid());
 
@@ -171,7 +171,7 @@ class PaymentsController extends Controller
     {
         $this->redirectUrls->setReturnUrl(config('paypal.redirect_url') . '?success=true')
              ->setCancelUrl(config('paypal.redirect_url') . '?success=false');
-        return $this->redirectUrls();
+        return $this->redirectUrls;
     }
 
 
@@ -185,15 +185,8 @@ class PaymentsController extends Controller
         $this->payment->setIntent('sale')
              ->setPayer($this->payer())
              ->setRedirectUrls($this->redirectUrls())
-             ->setTransactions($this->transaction());
+             ->setTransactions(array($this->transaction()));
         return $this->payment;
     }
-
-
-
-
-
-
-
 
 }
