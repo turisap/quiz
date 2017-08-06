@@ -42,6 +42,8 @@ class PaymentsController extends Controller
     )
     {
         $this->middleware('auth');
+        // custom middleware allows access to this action only in presence of query string form paypal
+        $this->middleware('came_from_paypal')->only('execute');
 
         $this->paypal       = resolve(PayPal::class);
         $this->price        = config('paypal.premium_cost');
@@ -80,13 +82,12 @@ class PaymentsController extends Controller
 
     public function execute()
     {
-        DB::transaction(function () {
-            $payer_id = request('PayerID') ?? false;
-            $paymentId = request('paymentId') ?? false;
-            $payment_status = (bool)request('success') ?? false;
-            $user_id = request('user_id') ?? false;
+        $payer_id = request('PayerID') ?? false;
+        $paymentId = request('paymentId') ?? false;
+        $payment_status = (bool)request('success') ?? false;
+        $user_id = request('user_id') ?? false;
 
-            //dd($user_id);
+        DB::transaction(function () use ($payer_id, $payment_status, $paymentId, $user_id) {
 
             if ($payment_status && $payer_id && $paymentId) {
                 $payment = Payment::get($paymentId, $this->paypal);
@@ -98,16 +99,15 @@ class PaymentsController extends Controller
                     $result = $payment->execute($execute, $this->paypal);
                 } catch (\Exception $e) {
                     $data = \GuzzleHttp\json_encode($e->getData());
-                    dd($data);
                 }
 
                 //update user to a premium one
                 User::updateToPremium($user_id);
             }
 
-            echo 'Hura, I am premium now';
-            //return view('premium-success', compact('payment_status'));
+
         });
+        return view('premium-success', compact('payment_status'));
 
     }
 
