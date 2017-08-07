@@ -31,3 +31,5 @@
 
 
 </script>
+
+<img src="{{$url}}">

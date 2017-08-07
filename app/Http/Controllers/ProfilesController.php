@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Photo;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,7 @@ class ProfilesController extends Controller
      *
      * Updates User's profile
      */
-    public function update(ProfileUpdateRequest $request, User $profile)
+    public function update(ProfileUpdateRequest $request, User $profile, Photo $photo)
     {
         $profile->school  = $request->school;
         $profile->age = $request->age;
@@ -41,6 +42,20 @@ class ProfilesController extends Controller
         $profile->gender = $request->gender;
         $profile->favorite_subject = $request->favorite_subject;
         $profile->notes = $request->notes;
+
+        $file = $request->file('profile_picture');
+
+        if ($file) {
+            $name = $file->hashName();
+            $size = $file->getSize();
+
+            $photo->name = $name;
+            $photo->size = $size;
+            $photo->user_id = $profile->id;
+
+            $file->storeAs('avatars', $name);
+            $photo->save();
+        }
 
 
         $updated_user = $profile->save();

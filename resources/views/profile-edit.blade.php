@@ -20,7 +20,7 @@
                         </ul>
                     </div>
                 @endif
-                <form class="form-horizontal" id="profileForm" action="/profile/{{$profile->id}}" method="post">
+                <form class="form-horizontal" id="profileForm" action="/profile/{{$profile->id}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     {{ method_field('PATCH') }}
                     <div class="form-group row">

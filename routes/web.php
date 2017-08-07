@@ -40,3 +40,4 @@ Route::group(['prefix' => 'premium'], function () {
 
 // profile routes
 Route::resource('profile', 'ProfilesController');
+
