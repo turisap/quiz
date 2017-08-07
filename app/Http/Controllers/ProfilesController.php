@@ -52,10 +52,21 @@ class ProfilesController extends Controller
         //dd($file);
 
         if ($file) {
+            // file's params
             $name = $file->hashName();
             $size = $file->getSize();
 
+            // delete the old photo if there is one
+            $old_photo = $profile->photo->first();
+            //dd($old_photo->name);
+            if ($old_photo) {
+                $photo->delete();
+                Storage::delete('/avatars/' . $old_photo->name);
+            }
+
             $file->storeAs('avatars', $name);
+
+
             $photo->updateOrCreate(['user_id' => $profile->id], [
                 'name'    => $name,
                 'size'    => $size,
