@@ -35,7 +35,8 @@ $factory->define(App\Quiz::class, function (Faker\Generator $faker) {
         'category_id' => $faker->biasedNumberBetween(1, 6),
         'description' => $faker->paragraph,
         'picture'     => $faker->word,
-        'views'      => $faker->biasedNumberBetween(1, 100)
+        'views'      => $faker->biasedNumberBetween(1, 100),
+        'premium'    => $faker->boolean()
     ];
 });
 

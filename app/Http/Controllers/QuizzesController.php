@@ -14,12 +14,11 @@ class QuizzesController extends Controller
 
     protected $liked;
 
-    public function __construct(Liked $liked)
+    public function __construct(/*Liked $liked*/)
     {
         $this->middleware('auth')->except(['index']);
-        $this->liked = $liked;
+        //$this->liked = $liked;
     }
-
 
     /**
      * Shows my quizzes page

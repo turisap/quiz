@@ -18,6 +18,13 @@
                     @endcan
                 </div>
             </div>
+                @if($quiz->premium == 1)
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5 class="premium">Premium</h5>
+                        </div>
+                    </div>
+                @endif
             </a>
         </div>
     </div>
