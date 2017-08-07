@@ -25,6 +25,8 @@ class User extends Authenticatable
      * The attributes that should be hidden for arrays.
      *
      * @var array
+     *
+     * These fields are hidden from converting to JSON
      */
     protected $hidden = [
         'password', 'remember_token',
@@ -47,6 +49,16 @@ class User extends Authenticatable
     public function likeds()
     {
         return $this->hasMany(Liked::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     *
+     * Relationships with photos
+     */
+    public function photo()
+    {
+        return $this->hasMany(Photo::class);
     }
 
 

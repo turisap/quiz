@@ -39,6 +39,17 @@ class Quiz extends Model
     }
 
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     *
+     * Relationships with photos
+     */
+    public function photo()
+    {
+        return $this->hasMany(Photo::class);
+    }
+
     /**
      * @return int
      *
