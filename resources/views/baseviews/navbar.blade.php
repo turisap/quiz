@@ -30,7 +30,7 @@
             </ul>
             @if(auth()->check())
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="right-nav"><a href="#">{{auth()->user()->first_name}}</a></li>
+                    <li class="right-nav"><a href="/profile/{{auth()->user()->id}}">{{auth()->user()->first_name}}</a></li>
                     <li><a href="/myquizzes/{{auth()->user()->id}}" >My quizes</a></li>
                 </ul>
             @else

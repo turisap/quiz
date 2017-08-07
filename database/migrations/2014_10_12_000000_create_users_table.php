@@ -23,6 +23,11 @@ class CreateUsersTable extends Migration
             $table->boolean('teacher')->default(0);
             $table->boolean('admin')->default(0);
             $table->boolean('premium')->default(0);
+            $table->string('school')->nullable()->default(NULL);
+            $table->string('grade')->nullable()->default(NULL);
+            $table->integer('age')->nullable()->default(NULL);
+            $table->string('favorite_subject')->nullable()->default(NULL);
+            $table->boolean('gender')->nullable()->default(NULL);
             $table->rememberToken();
             $table->timestamps();
         });

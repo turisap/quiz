@@ -37,3 +37,6 @@ Route::group(['prefix' => 'premium'], function () {
     Route::get('/checkout', 'PaymentsController@checkout');
     Route::get('/paid', 'PaymentsController@execute');
 });
+
+// profile routes
+Route::resource('profile', 'ProfilesController');
