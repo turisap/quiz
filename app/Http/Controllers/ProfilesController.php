@@ -16,7 +16,7 @@ class ProfilesController extends Controller
 
     public function show(User $profile)
     {
-        return view('profile');
+        return view('profile', compact('profile'));
     }
 
 
@@ -40,11 +40,14 @@ class ProfilesController extends Controller
         $profile->grade = $request->grade;
         $profile->gender = $request->gender;
         $profile->favorite_subject = $request->favorite_subject;
+        $profile->notes = $request->notes;
+
 
         $updated_user = $profile->save();
 
         if ($updated_user) {
             session()->flash('message', 'Your profile has been upgraded successfully');
+            return redirect('/profile/' . $profile->id);
         }
 
         session()->flash('message', 'There was a problem processing your request, please try again');

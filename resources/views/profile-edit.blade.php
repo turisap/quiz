@@ -27,13 +27,13 @@
                         <label class="col-md-2 col-form-label">School</label>
                         <div class="col-md-10">
                             <select class="form-control" name="school">
-                                <option value="Economic and Mathematical Gymnasium N1">Economic and Mathematical Gymnasium N1</option>
-                                <option value="State School №23">State School №23</option>
-                                <option value="State School №100 named after N.D.Girvadze">State School №100 named after N.D.Girvadze</option>
-                                <option value="City School №12">City School №12</option>
-                                <option value="City School №33">City School №33</option>
-                                <option value="City School №35">City School №35</option>
-                                <option value="Lyceum №2">Lyceum №2</option>
+                                <option @if($profile->school == "Economic and Mathematical Gymnasium N1") selected @endif value="Economic and Mathematical Gymnasium N1">Economic and Mathematical Gymnasium N1</option>
+                                <option @if($profile->school == "State School №23") selected @endif value="State School №23">State School №23</option>
+                                <option @if($profile->school == "State School №100 named after N.D.Girvadze") selected @endif value="State School №100 named after N.D.Girvadze">State School №100 named after N.D.Girvadze</option>
+                                <option @if($profile->school == "City School №12") selected @endif value="City School №12">City School №12</option>
+                                <option @if($profile->school == "City School №33") selected @endif value="City School №33">City School №33</option>
+                                <option @if($profile->school == "City School №35") selected @endif value="City School №35">City School №35</option>
+                                <option @if($profile->school == "Lyceum №2") selected @endif value="Lyceum №2">Lyceum №2</option>
                             </select>
                         </div>
                     </div>
@@ -41,17 +41,17 @@
                         <label class="col-md-2 col-form-label">Grade</label>
                         <div class="col-md-10">
                             <select name="grade" class="form-control">
-                                <option value="1st">1st</option>
-                                <option value="2st">2nd</option>
-                                <option value="3st">3rd</option>
-                                <option value="4st">4th</option>
-                                <option value="5st">5th</option>
-                                <option value="6st">6th</option>
-                                <option value="7st">7th</option>
-                                <option value="8st">8th</option>
-                                <option value="9st">9th</option>
-                                <option value="10st">10th</option>
-                                <option value="11st">11th</option>
+                                <option value="1st" @if($profile->grade == "1st") selected @endif>1st</option>
+                                <option value="2st" @if($profile->grade == "2nd") selected @endif>2nd</option>
+                                <option value="3st" @if($profile->grade == "3rd") selected @endif>3rd</option>
+                                <option value="4st" @if($profile->grade == "4st") selected @endif>4th</option>
+                                <option value="5st" @if($profile->grade == "5st") selected @endif>5th</option>
+                                <option value="6st" @if($profile->grade == "6st") selected @endif>6th</option>
+                                <option value="7st" @if($profile->grade == "7st") selected @endif>7th</option>
+                                <option value="8st" @if($profile->grade == "8st") selected @endif>8th</option>
+                                <option value="9st" @if($profile->grade == "9st") selected @endif>9th</option>
+                                <option value="10st" @if($profile->grade == "10st") selected @endif>10th</option>
+                                <option value="11st" @if($profile->grade == "11st") selected @endif>11th</option>
                             </select>
                         </div>
                     </div>
@@ -59,27 +59,27 @@
                         <label class="col-md-2 col-form-label">Age</label>
                         <div class="col-md-10">
                             <select name="gender" class="form-control">
-                                <option value="0">female</option>
-                                <option value="1">male</option>
+                                <option value="0" @if($profile->gender == 0) selected @endif>female</option>
+                                <option value="1" @if($profile->gender == 1) selected @endif>male</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Age</label>
                         <div class="col-md-10">
-                           <input name="age" type="text" class="form-control" value="{{old('age')}}">
+                           <input name="age" type="text" class="form-control" value="{{old('age')}}{{$profile->age}}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Favorite subject(s)</label>
                         <div class="col-md-10">
-                            <input name="favorite_subject" type="text" class="form-control" value="{{old('favorite_subject')}}">
+                            <input name="favorite_subject" type="text" class="form-control" value="{{old('favorite_subject')}}{{$profile->favorite_subject}}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2 col-form-label">Notes</label>
                         <div class="col-md-10">
-                            <textarea name="notes" rows="5" class="form-control">{{old('notes')}}</textarea>
+                            <textarea name="notes" rows="5" class="form-control">{{old('notes')}}{{$profile->notes}}</textarea>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-default">Update Info</button>

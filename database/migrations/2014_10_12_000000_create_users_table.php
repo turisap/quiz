@@ -26,8 +26,9 @@ class CreateUsersTable extends Migration
             $table->string('school')->nullable()->default(NULL);
             $table->string('grade')->nullable()->default(NULL);
             $table->integer('age')->nullable()->default(NULL);
-            $table->string('favorite_subject')->nullable()->default(NULL);
             $table->boolean('gender')->nullable()->default(NULL);
+            $table->string('favorite_subject')->nullable()->default(NULL);
+            $table->text('notes')->nullable()->default(NULL);
             $table->rememberToken();
             $table->timestamps();
         });

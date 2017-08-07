@@ -20,6 +20,10 @@
   transition: all 0.5s ease-in-out !important;
 }
 
+.left-bordered {
+  border-left: #ddd solid 1px;
+}
+
 /* ======================== HOMEPAGE STYLES ========================= */
 
 #homelanding {
