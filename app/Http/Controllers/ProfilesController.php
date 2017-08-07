@@ -19,8 +19,8 @@ class ProfilesController extends Controller
     public function show(User $profile)
     {
         $photo = $profile->photo->first();
-
-        $url = Storage::disk('public')->url('avatars/' . $photo->name);
+        
+        $url = $photo ? Storage::disk('public')->url('avatars/' . $photo->name) : false;
 
         return view('profile', compact('profile', 'url'));
     }
@@ -58,7 +58,7 @@ class ProfilesController extends Controller
             // update record in the database
             $photo->updatePhotoRecord($file, $profile);
         }
-        
+
         $updated_user = $profile->save();
 
         if ($updated_user) {
