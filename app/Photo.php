@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Photo extends Model
 {
@@ -25,5 +26,22 @@ class Photo extends Model
     public function quiz()
     {
         return $this->belongsTo('App\Quiz');
+    }
+
+
+    public function updatePhotoRecord($file, $profile)
+    {
+        // file's params
+        $name = $file->hashName();
+        $size = $file->getSize();
+
+        $file->storeAs('avatars', $name);
+
+
+        $this->updateOrCreate(['user_id' => $profile->id], [
+            'name'    => $name,
+            'size'    => $size,
+            'user_id' => $profile->id
+        ]);
     }
 }

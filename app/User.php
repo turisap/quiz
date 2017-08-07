@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -139,6 +140,24 @@ class User extends Authenticatable
         DB::table('users')->where('id', $id)
                           ->update(['premium' => 1]);
 
+    }
+
+
+    /**
+     * @return bool
+     *
+     * Delete a record along with an old file on update
+     */
+    public function deleteOldPhoto()
+    {
+        $old_photo = $this->photo->first();
+
+        if ($old_photo) {
+            $old_photo->delete();
+            Storage::delete('/avatars/' . $old_photo->name);
+            return true;
+        }
+        return false;
     }
 
 
