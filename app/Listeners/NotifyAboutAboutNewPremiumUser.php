@@ -2,20 +2,18 @@
 
 namespace App\Listeners;
 
-use App\Events\UserRegistration;
+use App\Events\NewPremiumPayment;
+use App\Mail\NewPremium;
+use App\Notifications\NewPremiumUser;
 use App\Notifications\UserRegistered;
 use App\Repositories\UserRepository;
-use App\User;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Mail\NewUser;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 
-class NotifyAboutNewUser
+class NotifyAboutAboutNewPremiumUser
 {
-
-
     /**
      * Create the event listener.
      *
@@ -29,16 +27,14 @@ class NotifyAboutNewUser
     /**
      * Handle the event.
      *
-     * @param  UserRegistration  $event
+     * @param  NewPremiumPayment  $event
      * @return void
      */
-    public function handle(UserRegistration $event)
+    public function handle(NewPremiumPayment $event)
     {
-        // notify admins
         $admins = UserRepository::getAllAdmins();
-        Notification::send($admins, new UserRegistered($event->user));
+        Notification::send($admins, new NewPremiumUser($event->user));
 
-        // send an email to the user
-        Mail::to($event->user)->send(new NewUser($event->user));
+        Mail::to($event->user)->send(new NewPremium($event->user));
     }
 }

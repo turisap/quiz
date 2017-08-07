@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewPremiumPayment;
+use App\Notifications\NewPremiumUser;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use PayPal\Api\Item;
@@ -103,6 +105,9 @@ class PaymentsController extends Controller
 
                 //update user to a premium one
                 User::updateToPremium($user_id);
+
+                $user = User::find($user_id);
+                event(new NewPremiumPayment($user));
             }
 
 

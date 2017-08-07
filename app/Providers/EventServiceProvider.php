@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\UserRegistration' => [
             'App\Listeners\NotifyAboutNewUser',
         ],
+        'App\Events\NewPremiumPayment' => [
+            'App\Listeners\NotifyAboutAboutNewPremiumUser'
+        ],
     ];
 
     /**
