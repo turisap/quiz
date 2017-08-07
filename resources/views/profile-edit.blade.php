@@ -94,3 +94,33 @@
     </div>
 
 @endsection
+
+@section('footer')
+    <script>
+        $(document).ready(function () {
+            $('#profileForm').validate({
+                rules : {
+                    age : {
+                        required : true,
+                        number   : true
+                    },
+                    favorite_subject : {
+                        required : true,
+                        minlength : 4
+                    }
+                },
+                messages : {
+                    age : {
+                        required : 'We need your age',
+                        number    : 'Age should be a number'
+                    },
+                    favorite_subject : {
+                        required :  'Please specify your favorite subject',
+                        minlength : 'Subject should be at least 4 characters long'
+                    }
+                }
+            })
+        })
+
+    </script>
+@endsection()
