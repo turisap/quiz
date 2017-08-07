@@ -82,6 +82,12 @@
                             <textarea name="notes" rows="5" class="form-control">{{old('notes')}}{{$profile->notes}}</textarea>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-md-2 col-form-label">Profile Photo</label>
+                        <div class="col-md-10">
+                            <input type="file" name="profile_picture" title="Browse" data-filename-placement="inside">
+                        </div>
+                    </div>
                     <button type="submit" class="btn btn-default">Update Info</button>
                 </form>
             </div>
@@ -121,6 +127,8 @@
                 }
             })
         })
+
+        $('input[type=file]').bootstrapFileInput();
 
     </script>
 @endsection()

@@ -50,6 +50,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
 <!-- MY JS -->
 <script src="/js/my_js.js"></script>
+<!-- Fileinput -->
+<script src="/js/components/bootstrap.file-input.js"></script>
 
 @yield('footer')
 
