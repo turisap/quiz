@@ -15,7 +15,9 @@ class TestController extends Controller
         /*$quiz = Quiz::find(request('quiz_id'));
         dd($quiz->unlike() ? true : false);*/
 
-        $photo = Photo::first();
+        $photo = Photo::find(8);
+
+        dd($photo);
         $url = Storage::disk('public')->url('avatars/' . $photo->name);
 
         return view('test', compact('url'));

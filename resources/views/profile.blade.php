@@ -17,7 +17,7 @@
                 <div class="col-md-8 col-md-offset-2">
                     <div class="row">
                         <div class="col-md-4">
-                            <img class="img-responsive pull-right" src="/images/static/images.png">
+                            <img class="img-responsive pull-right" @if(!$url) src="/images/static/images.png" @else src="{{$url}}" @endif >
                         </div>
                         <div class="col-md-8">
                             <dl class="list-group left-bordered">

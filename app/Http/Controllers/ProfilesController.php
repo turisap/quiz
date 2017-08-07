@@ -6,6 +6,7 @@ use App\Http\Requests\ProfileUpdateRequest;
 use App\Photo;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProfilesController extends Controller
 {
@@ -17,7 +18,11 @@ class ProfilesController extends Controller
 
     public function show(User $profile)
     {
-        return view('profile', compact('profile'));
+        $photo = $profile->photo->first();
+
+        $url = Storage::disk('public')->url('avatars/' . $photo->name);
+
+        return view('profile', compact('profile', 'url'));
     }
 
 
@@ -44,17 +49,18 @@ class ProfilesController extends Controller
         $profile->notes = $request->notes;
 
         $file = $request->file('profile_picture');
+        //dd($file);
 
         if ($file) {
             $name = $file->hashName();
             $size = $file->getSize();
 
-            $photo->name = $name;
-            $photo->size = $size;
-            $photo->user_id = $profile->id;
-
             $file->storeAs('avatars', $name);
-            $photo->save();
+            $photo->updateOrCreate(['user_id' => $profile->id], [
+                'name'    => $name,
+                'size'    => $size,
+                'user_id' => $profile->id
+            ]);
         }
 
 
