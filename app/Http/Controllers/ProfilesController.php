@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Photo;
 use App\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,8 +20,11 @@ class ProfilesController extends Controller
     public function show(User $profile)
     {
         $photo = $profile->photo->first();
-        
         $url = $photo ? Storage::disk('public')->url('avatars/' . $photo->name) : false;
+
+        if (Gate::denies('my_profile', $profile->id)){
+            abort(403, 'Sorry, you don\'t have access to this page');
+        }
 
         return view('profile', compact('profile', 'url'));
     }

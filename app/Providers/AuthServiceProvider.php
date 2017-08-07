@@ -36,8 +36,15 @@ class AuthServiceProvider extends ServiceProvider
             return $user->ableUnLike($quiz_id);
         });
 
+        // can like a quiz (only on condition that it's not already liked)
         Gate::define('ableLike', function ($user, $quiz_id) {
             return $user->ablelike($quiz_id);
         });
+
+        // checks whether a user tries to access it's own profile page and not another's
+        Gate::define('my_profile', function ($user, $route_id) {
+            return $user->ownsPage($route_id);
+        });
+
     }
 }

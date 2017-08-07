@@ -131,6 +131,18 @@ class User extends Authenticatable
 
 
     /**
+     * @param $route_id
+     * @return bool
+     *
+     * Checks whether a user tries to access it's own profile page and not another's
+     */
+    public function ownsPage($route_id)
+    {
+        return $this->id == $route_id;
+    }
+
+
+    /**
      * @param $id
      *
      * Updates user to premium after payments
