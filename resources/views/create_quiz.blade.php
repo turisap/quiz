@@ -13,6 +13,7 @@
                                 @include('baseviews.panel_question')
                             </div>
                         </div>
+                        <hr>
                     </form>
                     <button type="submit" id="saveQuiz" class="btn btn-primary">Save</button>
                     <a href="#" class="btn btn-default" id="addQuestionBtn">Add a question</a>
@@ -36,12 +37,14 @@
             var i = 2;
             var form = $('#questionsForm');
             var stub = $('#stub');
+            var divider = '<hr>';
 
             $('#saveQuiz').on('click', function(){
                 form.submit();
             });
 
 
+            // adding extrafields for questions on click
             $('#addQuestionBtn').on('click', function (e) {
                 e.preventDefault();
 
@@ -50,10 +53,14 @@
 
                 renameQuestions(extraQuestion);
 
-                form.append(extraQuestion);
+                scrollOnAdding();
 
                 i++;
             });
+
+
+
+
 
             function renameQuestions(extraQuestion){
 
@@ -68,7 +75,9 @@
                 var rightAnswer3 = extraQuestion.find('#rightAnswer1-3');
                 var rightAnswer4 = extraQuestion.find('#rightAnswer1-4');
 
+                extraQuestion.attr('id', 'question' + i);
                 question.attr('name', 'question' + i);
+                question.attr('placeholder', 'Question #' + i);
                 answer1.attr('name', 'answer' + i + '-1');
                 answer2.attr('name', 'answer' + i + '-2');
                 answer3.attr('name', 'answer' + i + '-3');
@@ -78,6 +87,18 @@
                 rightAnswer3.attr('name', 'rightAnswer' + i + '-3');
                 rightAnswer4.attr('name', 'rightAnswer' + i + '-4');
 
+                form.append(extraQuestion).append(divider);
+
+            }
+
+
+            function scrollOnAdding(){
+                if (i > 2) {
+                    var target = $('footer');
+                    $('html, body').animate({
+                        scrollTop: $(target).offset().top
+                    }, 500);
+                }
             }
         });
     </script>

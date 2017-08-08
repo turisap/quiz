@@ -1,7 +1,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="form-group">
-                <input class="form-control" id="question1" type="text" name="question1" placeholder="Your question here">
+                <input class="form-control" id="question1" type="text" name="question1" placeholder="Question #1">
             </div>
         </div>
     </div>
