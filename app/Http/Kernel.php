@@ -58,5 +58,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'came_from_paypal' => \App\Http\Middleware\CameFromPaypal::class,
         'no_premium' => \App\Http\Middleware\NoPremium::class,
+        'teacher'    => \App\Http\Middleware\Teacher::class,
     ];
 }

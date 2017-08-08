@@ -12,7 +12,7 @@ class TeachersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        //$this->middleware('teacher');
+        $this->middleware('teacher');
     }
 
     /**
@@ -22,7 +22,7 @@ class TeachersController extends Controller
      */
     public function create()
     {
-        //
+        return view('create_quiz');
     }
 
     /**
