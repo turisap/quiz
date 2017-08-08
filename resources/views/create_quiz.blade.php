@@ -57,7 +57,7 @@
             });
 
             //uncheck other radio boxes onchange
-            $('.radio').on('change', function () {
+            $('body').on('change', '.radio', function () {
 
                 var parent = $(this).parents('.radio-row');
                 var secondRow = parent.siblings('.radio-row');
