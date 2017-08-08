@@ -31,7 +31,11 @@
             @if(auth()->check())
                 <ul class="nav navbar-nav navbar-right">
                     <li class="right-nav"><a href="/profile/{{auth()->user()->id}}">{{auth()->user()->first_name}}</a></li>
+                    @if(auth()->user()->teacher != 1 && auth()->user()->admin != 1)
                     <li><a href="/myquizzes/{{auth()->user()->id}}" >My quizes</a></li>
+                    @else
+                    <li><a href="/author/{{auth()->user()->id}}">My Quizzes <span>(author)</span></a></li>
+                    @endif
                 </ul>
             @else
                 <ul class="nav navbar-nav navbar-right">

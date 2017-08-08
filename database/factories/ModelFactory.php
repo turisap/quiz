@@ -30,7 +30,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Quiz::class, function (Faker\Generator $faker) {
 
     return [
-        'author_id' => $faker->biasedNumberBetween(1, 10),
+        'author_id' => $faker->biasedNumberBetween(1, 11),
         'title'  => $faker->sentence,
         'category_id' => $faker->biasedNumberBetween(1, 6),
         'description' => $faker->paragraph,

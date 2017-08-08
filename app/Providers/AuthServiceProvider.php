@@ -51,5 +51,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->premium;
         });*/
 
+        // checks whether a given teacher tries to access it's quizzes and not of another one
+        Gate::define('isThisAuthor', function ($user, $route_id) {
+             return $user->isThisAuthor($route_id);
+        });
+
     }
 }

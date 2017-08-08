@@ -55,11 +55,18 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      *
-     * Relationships with photos
+     *  Relationships with photos
      */
     public function photo()
     {
         return $this->hasMany(Photo::class);
+    }
+
+
+
+    public function rightsFor()
+    {
+        return $this->hasMany(Quiz::class, 'author_id');
     }
 
 
@@ -172,6 +179,17 @@ class User extends Authenticatable
         return false;
     }
 
+
+    /**
+     * @param $route_id
+     * @return bool
+     *
+     * Checks if a  requested page belongs to a particular author and does't another one's
+     */
+    public function isThisAuthor($route_id)
+    {
+        return $this->id == $route_id;
+    }
 
 }
 

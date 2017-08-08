@@ -25,6 +25,7 @@ Route::get('login/facebook/callback', 'FacebookController@handleProviderCallback
 Route::get('/myquizzes/{user}', 'QuizzesController@index');
 Route::get('/quizzes/like/{quiz}', 'QuizzesController@like');
 Route::get('/quizzes/unlike/{quiz}', 'QuizzesController@unlike');
+Route::resource('author', 'TeachersController');
 
 //Play a Quiz
 Route::get('/quizzes/play/{quiz}', 'QuestionsController@play');
