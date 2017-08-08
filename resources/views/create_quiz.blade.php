@@ -24,6 +24,7 @@
     <div class="row questions" id="stub" style="visibility: hidden;">
         <div class="col-md-12">
             @include('baseviews.panel_question')
+            <a href="#" class="btn btn-danger remove-question"><i class="fa fa-times" aria-hidden="true"></i></a>
         </div>
     </div>
 
@@ -41,6 +42,15 @@
 
             $('#saveQuiz').on('click', function(){
                 form.submit();
+            });
+
+            // delete a new question
+            $('body').on('click','.remove-question', function () {
+                var question = $(this).parents('.questions');
+                var d = question.next();
+                question.remove();
+                d.remove();
+                scrollOnAdding();
             });
 
 
@@ -68,7 +78,6 @@
                 //console.log(parent.attr('class'));
 
             });
-
 
 
 
