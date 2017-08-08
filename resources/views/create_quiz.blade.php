@@ -44,7 +44,7 @@
             });
 
 
-            // adding extrafields for questions on click
+            // adding extra fields for questions on click
             $('#addQuestionBtn').on('click', function (e) {
                 e.preventDefault();
 
@@ -52,10 +52,21 @@
                 extraQuestion.css('visibility', 'visible');
 
                 renameQuestions(extraQuestion);
-
                 scrollOnAdding();
-
                 i++;
+            });
+
+            //uncheck other radio boxes onchange
+            $('.radio').on('change', function () {
+
+                var parent = $(this).parents('.radio-row');
+                var secondRow = parent.siblings('.radio-row');
+
+                secondRow.find('input[type=radio]').prop('checked', false);
+                parent.find('input[type=radio]').not(this).prop('checked', false);
+
+                //console.log(parent.attr('class'));
+
             });
 
 
