@@ -59,4 +59,22 @@ class Quiz extends Model
     {
         return $this->likeds()->detach();
     }
+
+
+    /**
+     * @return bool
+     *
+     * Checks if a user can access a premium quiz (and redirect him otherwise)
+     */
+    public function checkAccessToPremium()
+    {
+        // check first whether a user has premium access in the case of attempt to play a premium quiz
+        if ($this->premium == 1) {
+            if (auth()->user()->premium != 1) {
+                session()->flash('message', 'You need to upgrade your account to premium in order to play this quiz');
+                return false;
+            }
+            return true;
+        }
+    }
 }

@@ -46,5 +46,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->ownsPage($route_id);
         });
 
+        // checks whether a user is premium to access premium quizzes
+        /*Gate::define('premium', function ($user){
+            return $user->premium;
+        });*/
+
     }
 }

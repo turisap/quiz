@@ -46,6 +46,7 @@ class PaymentsController extends Controller
         $this->middleware('auth');
         // custom middleware allows access to this action only in presence of query string form paypal
         $this->middleware('came_from_paypal')->only('execute');
+        $this->middleware('no_premium')->only('checkout');
 
         $this->paypal       = resolve(PayPal::class);
         $this->price        = config('paypal.premium_cost');
