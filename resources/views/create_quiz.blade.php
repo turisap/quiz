@@ -43,6 +43,18 @@
                 rules : {
                     'question[0]' : {
                         required : true
+                    },
+                    'answer1[0]' : {
+                        required : true
+                    },
+                    'answer2[0]' : {
+                        required : true
+                    },
+                    'answer3[0]' : {
+                        required : true
+                    },
+                    'answer4[0]' : {
+                        required : true
                     }
                 }
             });
@@ -109,10 +121,12 @@
                 question.attr('id', 'question' + i);
                 question.attr('name', 'question[' + i + ']');
                 question.attr('placeholder', 'Question #' + i);
-                answer1.attr('name', 'answer' + i + '-1');
-                answer2.attr('name', 'answer' + i + '-2');
-                answer3.attr('name', 'answer' + i + '-3');
-                answer4.attr('name', 'answer' + i + '-4');
+
+                answer1.attr('name', 'answer1[' + i + ']').attr('id', 'answer1[' + i + ']');
+                answer2.attr('name', 'answer2[' + i + ']').attr('id', 'answer2[' + i + ']');
+                answer3.attr('name', 'answer3[' + i + ']').attr('id', 'answer3[' + i + ']');
+                answer4.attr('name', 'answer4[' + i + ']').attr('id', 'answer4[' + i + ']');
+
                 rightAnswer1.attr('name', 'rightAnswer' + i + '-1');
                 rightAnswer2.attr('name', 'rightAnswer' + i + '-2');
                 rightAnswer3.attr('name', 'rightAnswer' + i + '-3');
@@ -135,6 +149,11 @@
 
             function addRulesToNewInputs(){
                 $('.question').each(function () {
+                    $(this).rules("add", {
+                        required: true
+                    });
+                });
+                $('.answer').each(function () {
                     $(this).rules("add", {
                         required: true
                     });

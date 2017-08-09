@@ -8,7 +8,7 @@
     <div class="row radio-row">
         <div class="col-sm-5">
             <div class="form-group">
-                <input class="form-control answer" id="answer1-1" type="text" name="answer1-1" placeholder="First answer">
+                <input class="form-control answer" id="answer1-1" type="text" name="answer1[0]" placeholder="First answer">
             </div>
         </div>
         <div class="col-sm-1">
@@ -18,7 +18,7 @@
         </div>
         <div class="col-sm-5">
             <div class="form-group">
-                <input class="form-control answer" id="answer1-2" type="text" name="answer1-2" placeholder="Second answer">
+                <input class="form-control answer" id="answer1-2" type="text" name="answer2[0]" placeholder="Second answer">
             </div>
         </div>
         <div class="col-sm-1">
@@ -30,7 +30,7 @@
     <div class="row radio-row">
         <div class="col-sm-5">
             <div class="form-group">
-                <input class="form-control answer" id="answer1-3" type="text" name="answer1-3" placeholder="Third answer">
+                <input class="form-control answer" id="answer1-3" type="text" name="answer3[0]" placeholder="Third answer">
             </div>
         </div>
         <div class="col-sm-1">
@@ -40,7 +40,7 @@
         </div>
         <div class="col-sm-5">
             <div class="form-group">
-                <input class="form-control answer" type="text" id="answer1-4" name="answer1-4" placeholder="Fourth answer">
+                <input class="form-control answer" type="text" id="answer1-4" name="answer4[0]" placeholder="Fourth answer">
             </div>
         </div>
         <div class="col-sm-1">
