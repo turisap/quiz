@@ -40,7 +40,22 @@
             // var divider = '<hr>';
 
             $('#saveQuiz').on('click', function(){
-                form.submit();
+
+                form.validate();
+
+                $('.answer').each(function(){
+                   $(this).rules('add', {
+                       required: true
+                   })
+                });
+
+                if(form.validate().form()) {
+                    console.log('valid');
+                } else {
+                    console.log('invalid');
+                }
+
+                //form.submit();
             });
 
             // delete a new question
@@ -84,6 +99,7 @@
             function renameQuestions(extraQuestion){
 
                 var question = extraQuestion.find('#question1');
+
                 var answer1 = extraQuestion.find('#answer1-1');
                 var answer2 = extraQuestion.find('#answer1-2');
                 var answer3 = extraQuestion.find('#answer1-3');
@@ -93,6 +109,11 @@
                 var rightAnswer2 = extraQuestion.find('#rightAnswer1-2');
                 var rightAnswer3 = extraQuestion.find('#rightAnswer1-3');
                 var rightAnswer4 = extraQuestion.find('#rightAnswer1-4');
+
+                var labelAnswer1 = extraQuestion.find('#labelAnswer1-1');
+                var labelAnswer2 = extraQuestion.find('#labelAnswer1-2');
+                var labelAnswer3 = extraQuestion.find('#labelAnswer1-3');
+                var labelAnswer4 = extraQuestion.find('#labelAnswer1-4');
 
                 extraQuestion.attr('id', 'question' + i);
                 question.attr('name', 'question' + i);
@@ -105,6 +126,11 @@
                 rightAnswer2.attr('name', 'rightAnswer' + i + '-2');
                 rightAnswer3.attr('name', 'rightAnswer' + i + '-3');
                 rightAnswer4.attr('name', 'rightAnswer' + i + '-4');
+
+                labelAnswer1.attr('for', 'answer' + i + '-1').attr('id', 'answer' + i + '-1');
+                labelAnswer2.attr('for', 'answer' + i + '-2').attr('id', 'answer' + i + '-2');
+                labelAnswer3.attr('for', 'answer' + i + '-3').attr('id', 'answer' + i + '-3');
+                labelAnswer4.attr('for', 'answer' + i + '-4').attr('id', 'answer' + i + '-4');
 
                 form.append(extraQuestion);
                 //form.append(divider);
