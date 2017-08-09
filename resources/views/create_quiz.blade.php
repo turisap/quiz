@@ -20,7 +20,7 @@
             </div>
         </div>
     </section>
-    <div class="row questions" id="stub" style="visibility: hidden;">
+    <div class="row" id="stub" style="visibility: hidden;">
         <div class="col-md-12">
             @include('baseviews.panel_question')
             <a href="#" class="btn btn-danger remove-question"><i class="fa fa-times" aria-hidden="true"></i></a>
@@ -61,7 +61,8 @@
 
 
             $('#saveQuiz').on('click', function(){
-                form.submit();
+                checkRadiobuttons();
+                //form.submit();
             });
 
             // delete a new question
@@ -158,6 +159,20 @@
                         required: true
                     });
                 });
+            }
+
+            function checkRadiobuttons(){
+                var valid = false;
+                $('.questions').each(function () {
+                    var set = $(this).find('.radio');
+                    set.each(function () {
+                        if($(this).is(':checked')){
+                            valid = true;
+                            console.log(valid);
+                        }
+
+                    })
+                })
             }
         });
     </script>
