@@ -13,14 +13,14 @@
                                 @include('baseviews.panel_question')
                             </div>
                         </div>
-                        <button type="submit" id="saveQuiz" class="btn btn-primary">Save</button>
                     </form>
+                    <button type="submit" id="saveQuiz" class="btn btn-primary">Save</button>
                     <a href="#" class="btn btn-default" id="addQuestionBtn">Add a question</a>
                 </div>
             </div>
         </div>
     </section>
-    <div class="row" id="stub" style="visibility: hidden;">
+    <div class="row questions" id="stub" style="visibility: hidden;">
         <div class="col-md-12">
             @include('baseviews.panel_question')
             <a href="#" class="btn btn-danger remove-question"><i class="fa fa-times" aria-hidden="true"></i></a>
@@ -58,6 +58,10 @@
                         required : true
                     }
                 }
+            });
+
+            $('#saveQuiz').click(function(){
+                form.submit();
             });
 
 
@@ -157,6 +161,7 @@
                     });
                 });
             }
+
 
             /*function checkRadiobuttons(){
                 var valid = false;
