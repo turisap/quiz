@@ -13,7 +13,6 @@
                                 @include('baseviews.panel_question')
                             </div>
                         </div>
-                        <hr>
                     </form>
                     <button type="submit" id="saveQuiz" class="btn btn-primary">Save</button>
                     <a href="#" class="btn btn-default" id="addQuestionBtn">Add a question</a>
@@ -38,7 +37,7 @@
             var i = 2;
             var form = $('#questionsForm');
             var stub = $('#stub');
-            var divider = '<hr>';
+            // var divider = '<hr>';
 
             $('#saveQuiz').on('click', function(){
                 form.submit();
@@ -47,9 +46,9 @@
             // delete a new question
             $('body').on('click','.remove-question', function () {
                 var question = $(this).parents('.questions');
-                var d = question.next();
+                //var d = question.next();
                 question.remove();
-                d.remove();
+                //d.remove();
                 scrollOnAdding();
             });
 
@@ -107,7 +106,8 @@
                 rightAnswer3.attr('name', 'rightAnswer' + i + '-3');
                 rightAnswer4.attr('name', 'rightAnswer' + i + '-4');
 
-                form.append(extraQuestion).append(divider);
+                form.append(extraQuestion);
+                //form.append(divider);
 
             }
 
