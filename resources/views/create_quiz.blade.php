@@ -13,8 +13,8 @@
                                 @include('baseviews.panel_question')
                             </div>
                         </div>
+                        <button type="submit" id="saveQuiz" class="btn btn-primary">Save</button>
                     </form>
-                    <button type="submit" id="saveQuiz" class="btn btn-primary">Save</button>
                     <a href="#" class="btn btn-default" id="addQuestionBtn">Add a question</a>
                 </div>
             </div>
@@ -39,6 +39,7 @@
             var stub = $('#stub');
 
 
+
             form.validate({
                 rules : {
                     'question[0]' : {
@@ -60,10 +61,6 @@
             });
 
 
-            $('#saveQuiz').on('click', function(){
-                checkRadiobuttons();
-                //form.submit();
-            });
 
             // delete a new question
             $('body').on('click','.remove-question', function () {
@@ -161,19 +158,18 @@
                 });
             }
 
-            function checkRadiobuttons(){
+            /*function checkRadiobuttons(){
                 var valid = false;
-                $('.questions').each(function () {
+
+                .forEach(function () {
                     var set = $(this).find('.radio');
                     set.each(function () {
                         if($(this).is(':checked')){
                             valid = true;
-                            console.log(valid);
                         }
-
-                    })
+                    });
                 })
-            }
+            }*/
         });
     </script>
 @endsection

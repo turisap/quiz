@@ -13,7 +13,7 @@
         </div>
         <div class="col-sm-1">
             <div class="form-group">
-                <input class="radio" type="radio" name="rightAnswer1-1" id="rightAnswer1-1">
+                <input class="radio" checked type="radio" name="rightAnswer1-1" id="rightAnswer1-1">
             </div>
         </div>
         <div class="col-sm-5">
