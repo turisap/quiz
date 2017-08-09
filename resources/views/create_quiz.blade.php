@@ -174,10 +174,11 @@
             }
 
 
-
+            // checks whether all sets of questions have one radio button checked
             function checkRadiobuttons(){
                 var questions = [];
                 var checkboxes = [];
+                var validQuestions = [];
 
                 // THIS IS HOW TO FIND ELEMENTS WHICH WERE APPENDED TO THE DOM
                 $(form).find('.questions').each(function () {//get all the questions from the form
@@ -190,8 +191,13 @@
                     checkboxes = [];
 
                 });
-                console.log(questions);
+                //console.log(questions);
+                for(var i = 0; i < questions.length; i++){
+                    validQuestions.push($.inArray(true, questions[i]));
+                }
+                return ($.inArray(-1, validQuestions) == -1);
             }
+
         });
     </script>
 @endsection
