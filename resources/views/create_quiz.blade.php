@@ -13,8 +13,10 @@
                                 @include('baseviews.panel_question')
                             </div>
                         </div>
+                        <input type="hidden" name="all-right-answers" id="allRightAnswers">
+                        <button type="submit" id="saveQuiz" class="btn btn-primary">Save</button>
                     </form>
-                    <button type="submit" id="saveQuiz" class="btn btn-primary">Save</button>
+                    <label style="visibility: hidden;" id="radioButtonsError"></label>
                     <a href="#" class="btn btn-default" id="addQuestionBtn">Add a question</a>
                 </div>
             </div>
@@ -40,7 +42,7 @@
 
 
 
-            form.validate({
+            /*form.validate({
                 rules : {
                     'question[0]' : {
                         required : true
@@ -58,10 +60,18 @@
                         required : true
                     }
                 }
-            });
+            });*/
 
-            $('#saveQuiz').click(function(){
+            /*$('#saveQuiz').click(function(){
                 form.submit();
+            });*/
+
+            $(form).submit(function(e) {
+                e.preventDefault();
+                // check first whether radio buttons in all sets were checked
+                if(!checkRadiobuttons()) {
+                    $('#radioButtonsError').html('Please check right answers in all questions').css('visibility', 'visible');
+                }
             });
 
 
@@ -85,7 +95,7 @@
 
                 renameQuestions(extraQuestion);
                 scrollOnAdding();
-                addRulesToNewInputs();
+                //addRulesToNewInputs();
 
                 i++;
             });
@@ -129,10 +139,11 @@
                 answer3.attr('name', 'answer3[' + i + ']').attr('id', 'answer3[' + i + ']');
                 answer4.attr('name', 'answer4[' + i + ']').attr('id', 'answer4[' + i + ']');
 
-                rightAnswer1.attr('name', 'rightAnswer' + i + '-1');
-                rightAnswer2.attr('name', 'rightAnswer' + i + '-2');
-                rightAnswer3.attr('name', 'rightAnswer' + i + '-3');
-                rightAnswer4.attr('name', 'rightAnswer' + i + '-4');
+                rightAnswer1.attr('name', 'rightAnswer1[' + i + ']');
+                rightAnswer2.attr('name', 'rightAnswer2[' + i + ']');
+                rightAnswer3.attr('name', 'rightAnswer3[' + i + ']');
+                rightAnswer4.attr('name', 'rightAnswer4[' + i + ']');
+
 
                 form.append(extraQuestion);
 
@@ -163,18 +174,24 @@
             }
 
 
-            /*function checkRadiobuttons(){
-                var valid = false;
 
-                .forEach(function () {
+            function checkRadiobuttons(){
+                var questions = [];
+                var checkboxes = [];
+
+                // THIS IS HOW TO FIND ELEMENTS WHICH WERE APPENDED TO THE DOM
+                $(form).find('.questions').each(function () {//get all the questions from the form
                     var set = $(this).find('.radio');
+
                     set.each(function () {
-                        if($(this).is(':checked')){
-                            valid = true;
-                        }
+                        checkboxes.push($(this).is(':checked'))
                     });
-                })
-            }*/
+                    questions.push(checkboxes);
+                    checkboxes = [];
+
+                });
+                console.log(questions);
+            }
         });
     </script>
 @endsection

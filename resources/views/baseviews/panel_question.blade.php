@@ -13,7 +13,7 @@
         </div>
         <div class="col-sm-1">
             <div class="form-group">
-                <input class="radio" checked type="radio" name="rightAnswer1-1" id="rightAnswer1-1">
+                <input class="radio" type="radio" name="rightAnswer1[0]" id="rightAnswer1-1">
             </div>
         </div>
         <div class="col-sm-5">
@@ -23,7 +23,7 @@
         </div>
         <div class="col-sm-1">
             <div class="form-group">
-                <input class="radio" type="radio" name="rightAnswer1-2" id="rightAnswer1-2">
+                <input class="radio" type="radio" name="rightAnswer2[0]" id="rightAnswer1-2">
             </div>
         </div>
     </div>
@@ -35,7 +35,7 @@
         </div>
         <div class="col-sm-1">
             <div class="form-group">
-                <input class="radio" type="radio" id="rightAnswer1-3" name="rightAnswer1-3">
+                <input class="radio" type="radio" id="rightAnswer1-3" name="rightAnswer3[0]">
             </div>
         </div>
         <div class="col-sm-5">
@@ -45,7 +45,7 @@
         </div>
         <div class="col-sm-1">
             <div class="form-group">
-                <input class="radio" type="radio" id="rightAnswer1-4" name="rightAnswer1-4">
+                <input class="radio" type="radio" id="rightAnswer1-4" name="rightAnswer4[0]">
             </div>
         </div>
     </div>
