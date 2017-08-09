@@ -192,15 +192,11 @@
 
                 });
                 //console.log(questions);
-                for(var i = 0; i < questions.length; i++){
-                    validQuestions.push($.inArray(true, questions[i]));
+                for(var c = 0; c < questions.length; c++){
+                    validQuestions.push($.inArray(true, questions[c]));
                 }
                 return ($.inArray(-1, validQuestions) == -1);
             }
-
-            $('body').on('click', function () {
-               assemblyRightAnswersArray();
-            });
 
 
             // returns an array with the number of right answer for each question
@@ -219,8 +215,8 @@
                     });
                 });
 
-                for(i = 0; i < rightAnswers.length; i++){
-                    rightNumbers.push(rightAnswers[i].split('-').pop());
+                for(var c = 0; c < rightAnswers.length; c++){
+                    rightNumbers.push(rightAnswers[c].split('-').pop());
                 }
                 return rightNumbers;
             }
