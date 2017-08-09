@@ -37,33 +37,27 @@
             var i = 2;
             var form = $('#questionsForm');
             var stub = $('#stub');
-            // var divider = '<hr>';
+
+
+            form.validate({
+                rules : {
+                    'question[0]' : {
+                        required : true
+                    }
+                }
+            });
+
 
             $('#saveQuiz').on('click', function(){
-
-                form.validate();
-
-                $('.answer').each(function(){
-                   $(this).rules('add', {
-                       required: true
-                   })
-                });
-
-                if(form.validate().form()) {
-                    console.log('valid');
-                } else {
-                    console.log('invalid');
-                }
-
-                //form.submit();
+                form.submit();
             });
 
             // delete a new question
             $('body').on('click','.remove-question', function () {
                 var question = $(this).parents('.questions');
-                //var d = question.next();
+
                 question.remove();
-                //d.remove();
+
                 scrollOnAdding();
             });
 
@@ -77,6 +71,8 @@
 
                 renameQuestions(extraQuestion);
                 scrollOnAdding();
+                addRulesToNewInputs();
+
                 i++;
             });
 
@@ -89,7 +85,6 @@
                 secondRow.find('input[type=radio]').prop('checked', false);
                 parent.find('input[type=radio]').not(this).prop('checked', false);
 
-                //console.log(parent.attr('class'));
 
             });
 
@@ -110,13 +105,9 @@
                 var rightAnswer3 = extraQuestion.find('#rightAnswer1-3');
                 var rightAnswer4 = extraQuestion.find('#rightAnswer1-4');
 
-                var labelAnswer1 = extraQuestion.find('#labelAnswer1-1');
-                var labelAnswer2 = extraQuestion.find('#labelAnswer1-2');
-                var labelAnswer3 = extraQuestion.find('#labelAnswer1-3');
-                var labelAnswer4 = extraQuestion.find('#labelAnswer1-4');
-
                 extraQuestion.attr('id', 'question' + i);
-                question.attr('name', 'question' + i);
+                question.attr('id', 'question' + i);
+                question.attr('name', 'question[' + i + ']');
                 question.attr('placeholder', 'Question #' + i);
                 answer1.attr('name', 'answer' + i + '-1');
                 answer2.attr('name', 'answer' + i + '-2');
@@ -127,13 +118,7 @@
                 rightAnswer3.attr('name', 'rightAnswer' + i + '-3');
                 rightAnswer4.attr('name', 'rightAnswer' + i + '-4');
 
-                labelAnswer1.attr('for', 'answer' + i + '-1').attr('id', 'answer' + i + '-1');
-                labelAnswer2.attr('for', 'answer' + i + '-2').attr('id', 'answer' + i + '-2');
-                labelAnswer3.attr('for', 'answer' + i + '-3').attr('id', 'answer' + i + '-3');
-                labelAnswer4.attr('for', 'answer' + i + '-4').attr('id', 'answer' + i + '-4');
-
                 form.append(extraQuestion);
-                //form.append(divider);
 
             }
 
@@ -145,6 +130,15 @@
                         scrollTop: $(target).offset().top
                     }, 500);
                 }
+            }
+
+
+            function addRulesToNewInputs(){
+                $('.question').each(function () {
+                    $(this).rules("add", {
+                        required: true
+                    });
+                });
             }
         });
     </script>
