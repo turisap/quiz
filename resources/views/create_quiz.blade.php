@@ -16,8 +16,8 @@
                         <input type="hidden" name="all-right-answers" id="allRightAnswers">
                         <button type="submit" id="saveQuiz" class="btn btn-primary">Save</button>
                     </form>
-                    <label style="visibility: hidden;" id="radioButtonsError"></label>
                     <a href="#" class="btn btn-default" id="addQuestionBtn">Add a question</a>
+                    <label style="visibility: hidden;" id="radioButtonsError"></label>
                 </div>
             </div>
         </div>
@@ -62,14 +62,11 @@
                 }
             });*/
 
-            /*$('#saveQuiz').click(function(){
-                form.submit();
-            });*/
 
             $(form).submit(function(e) {
-                e.preventDefault();
                 // check first whether radio buttons in all sets were checked
-                if(!checkRadiobuttons()) {
+                if(!checkRadioButtons()) {
+                    e.preventDefault();
                     $('#radioButtonsError').html('Please check right answers in all questions').css('visibility', 'visible');
                 }
             });
@@ -115,7 +112,8 @@
 
 
 
-            function renameQuestions(extraQuestion){
+            function renameQuestions(extraQuestion)
+            {
 
                 var question = extraQuestion.find('#question1');
 
@@ -146,11 +144,11 @@
 
 
                 form.append(extraQuestion);
-
             }
 
 
-            function scrollOnAdding(){
+            function scrollOnAdding()
+            {
                 if (i > 2) {
                     var target = $('footer');
                     $('html, body').animate({
@@ -160,7 +158,8 @@
             }
 
 
-            function addRulesToNewInputs(){
+            function addRulesToNewInputs()
+            {
                 $('.question').each(function () {
                     $(this).rules("add", {
                         required: true
@@ -175,7 +174,8 @@
 
 
             // checks whether all sets of questions have one radio button checked
-            function checkRadiobuttons(){
+            function checkRadioButtons()
+            {
                 var questions = [];
                 var checkboxes = [];
                 var validQuestions = [];
@@ -196,6 +196,33 @@
                     validQuestions.push($.inArray(true, questions[i]));
                 }
                 return ($.inArray(-1, validQuestions) == -1);
+            }
+
+            $('body').on('click', function () {
+               assemblyRightAnswersArray();
+            });
+
+
+            // returns an array with the number of right answer for each question
+            function assemblyRightAnswersArray()
+            {
+                var rightAnswers = [];
+                var rightNumbers = [];
+                // THIS IS HOW TO FIND ELEMENTS WHICH WERE APPENDED TO THE DOM
+                $(form).find('.questions').each(function () {//get all the questions from the form
+                    var set = $(this).find('.radio');
+
+                    set.each(function () {
+                        if($(this).is(':checked')){
+                            rightAnswers.push($(this).attr('id'));
+                        }
+                    });
+                });
+
+                for(i = 0; i < rightAnswers.length; i++){
+                    rightNumbers.push(rightAnswers[i].split('-').pop());
+                }
+                return rightNumbers;
             }
 
         });
