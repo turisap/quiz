@@ -191,5 +191,23 @@ class User extends Authenticatable
         return $this->id == $route_id;
     }
 
+
+    /**
+     * @param $route_id
+     * @return bool
+     *
+     * Determines whether a given quiz was created by a user who is going to access it
+     */
+    public function isCreatedByMe($author_id)
+    {
+        $my_quizzes = $this->rightsFor;
+        foreach ($my_quizzes as $my_quiz) {
+            if ($my_quiz->author_id == $author_id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
 

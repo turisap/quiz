@@ -2,7 +2,12 @@
     <div class="panel panel-default quiz-panel">
         <div class="panel-heading quiz-photo">PHOTO</div>
         <div class="panel-body">
-            <a href="/quizzes/play/{{$quiz->id}}" class="quiz-link">
+            @if(!isset($edit))
+                <a href="/quizzes/play/{{$quiz->id}}" class="quiz-link">
+            @else
+                <a href="/author/{{$quiz->id}}/edit" class="quiz-link">
+            @endif
+
             <h4>{{str_limit($quiz->title, 20)}}</h4>
             <p>{{$quiz->author->first_name}} {{$quiz->author->last_name}}</p>
             <div class="row" >

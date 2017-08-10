@@ -56,5 +56,10 @@ class AuthServiceProvider extends ServiceProvider
              return $user->isThisAuthor($route_id);
         });
 
+        // checks whether a given teacher tries to edit it's quiz and not another's
+        Gate::define('my_created', function ($user, $author_id) {
+             return $user->isCreatedByMe($author_id);
+        });
+
     }
 }

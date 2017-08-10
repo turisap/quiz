@@ -62,9 +62,14 @@ class TeachersController extends Controller
             abort(403, 'This page does not belongs to you');
         }
         $created_quizzes = $author->rightsFor->chunk(6);
+        $edit = true;
 
-        return view('my_created', compact('created_quizzes'));
+        return view('my_created', compact('created_quizzes', 'edit'));
     }
+
+
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -74,7 +79,14 @@ class TeachersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $quiz = Quiz::find($id);
+
+        if (Gate::denies('my_created', $quiz->author_id)) {
+            abort(403, 'Sorry, you don\'t have access to that page');
+        }
+        $questions = Question::where('quiz_id', $quiz->id);
+
+        return view('quiz_edit', compact('quiz', 'questions'));
     }
 
     /**
@@ -86,7 +98,7 @@ class TeachersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
