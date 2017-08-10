@@ -84,9 +84,10 @@ class TeachersController extends Controller
         if (Gate::denies('my_created', $quiz->author_id)) {
             abort(403, 'Sorry, you don\'t have access to that page');
         }
-        $questions = Question::where('quiz_id', $quiz->id);
+        $questions = $quiz->questions;
+        $categories = Category::all();
 
-        return view('quiz_edit', compact('quiz', 'questions'));
+        return view('quiz_edit', compact('quiz', 'questions', 'categories'));
     }
 
     /**
@@ -98,7 +99,8 @@ class TeachersController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        $quiz = Quiz::find($id);
+        dd($quiz);
     }
 
     /**
