@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Question;
 use App\Repositories\QuizRepozitory;
 use App\User;
 use App\Quiz;
@@ -35,10 +36,10 @@ class TeachersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Quiz $quiz)
+    public function store(Quiz $quiz, Question $question)
     {
         $data = request()->all();
-        QuizRepozitory::createQuiz($data, $quiz);
+        QuizRepozitory::createQuiz($data, $quiz, $question);
     }
 
     /**

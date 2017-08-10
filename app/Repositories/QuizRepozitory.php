@@ -10,6 +10,7 @@ namespace App\Repositories;
 
 use App\Question;
 use App\Quiz;
+use Illuminate\Support\Facades\DB;
 
 class QuizRepozitory
 {
@@ -33,7 +34,7 @@ class QuizRepozitory
     }
 
 
-    public static function createQuiz(array $data, $quiz)
+    public static function createQuiz(array $data, $quiz, $question)
     {
         $questions =  $data['question'] ?? null;
         $answer1   =  $data['answer1']  ?? null;
@@ -51,23 +52,47 @@ class QuizRepozitory
         if ($questions && $answer1 && $answer2 && $answer3 && $answer4 && $right_answer && $category
             && $title && $description) {
 
-            // create a quiz first
-            $quiz->fill([
-                'author_id'   => auth()->user()->id,
-                'category_id' => $category,
-                'title'       => $title,
-                'description' => $description,
-                'picture'     => 'there should be an ID',
-                'premium'     => $premium,
-                'views'       => 0
-            ]);
+            DB::transaction(function () use (
+                $quiz,
+                $category,
+                $title,
+                $description,
+                $premium,
+                $answer4,
+                $answer3,
+                $answer2,
+                $answer1,
+                $questions,
+                $question,
+                $right_answer
+            ) {
+                // create a quiz first
+                $quiz = $quiz->create([
+                    'author_id'   => auth()->user()->id,
+                    'category_id' => $category,
+                    'title'       => $title,
+                    'description' => $description,
+                    'picture'     => 'there should be an ID',
+                    'premium'     => $premium,
+                    'views'       => 0
+                ]);
 
-            $quiz->save();
-            echo 'dkfj';
 
-            for ($i = 0; $i < count($questions); $i++) {
-
-            }
+                for ($i = 0; $i <= count($questions); $i++) {
+                    if ($i == 1) {
+                        continue;
+                    }
+                    $question->create([
+                        'quiz_id'   => $quiz->id,
+                        'question'  => $questions[$i],
+                        'answer1'   => $answer1[$i],
+                        'answer2'   => $answer2[$i],
+                        'answer3'   => $answer3[$i],
+                        'answer4'   => $answer4[$i],
+                        'answer'    => $right_answer[$i]
+                    ]);
+                }
+            });
         }
     }
 }

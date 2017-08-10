@@ -23,7 +23,7 @@ class CreateQuizzesTable extends Migration
             $table->text('description');
             $table->string('picture');
             $table->integer('views');
-            $table->boolean('premium');
+            $table->boolean('premium')->default(0);
             $table->timestamps();
         });
 
