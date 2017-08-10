@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Repositories\QuizRepozitory;
 use App\User;
+use App\Quiz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -22,7 +25,8 @@ class TeachersController extends Controller
      */
     public function create()
     {
-        return view('create_quiz');
+        $categories = Category::all();
+        return view('create_quiz', compact('categories'));
     }
 
     /**
@@ -31,10 +35,10 @@ class TeachersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Quiz $quiz)
     {
         $data = request()->all();
-        dd($data);
+        QuizRepozitory::createQuiz($data, $quiz);
     }
 
     /**

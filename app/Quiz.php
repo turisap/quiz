@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Quiz extends Model
 {
+
+    protected $fillable = ['author_id', 'category_id', 'title', 'description', 'picture', 'premium', 'views'];
     /**
      * Relationships with users
      */

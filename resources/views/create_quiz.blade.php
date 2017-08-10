@@ -6,8 +6,47 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
-                    <form id="questionsForm" method="post" action="/author">
+                    <form id="questionsForm" method="post" action="/author" enctype="multipart/form-data">
                         {{csrf_field()}}
+                        <div class="row quiz-info" style="border: solid black 1px;">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Title</label>
+                                    <div class="col-md-10">
+                                        <input type="text" name="title" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Description</label>
+                                    <div class="col-md-10">
+                                        <input type="text" name="description" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-2 col-form-label">Category</label>
+                                    <div class="col-md-10">
+                                        <select name="category" class="form-control">
+                                            @if(count($categories) > 0)
+                                                @foreach($categories as $category)
+                                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label>Premium</label>
+                                        <input type="checkbox" name="premium">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="file" name="picture" class="form-control" title="picture">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row questions" id="question-0">
                             <div class="col-md-12">
                                 @include('baseviews.panel_question')
@@ -34,6 +73,9 @@
 
 @section('footer')
     <script>
+
+        $('input[type=file]').bootstrapFileInput();
+
         $(document).ready(function(){
 
             var i = 2;
@@ -70,7 +112,7 @@
                     $('#radioButtonsError').html('Please check right answers in all questions').css('visibility', 'visible');
                 } else {
                     var rightAnswers = assemblyRightAnswersArray();
-                    $('#allRightAnswers').val(rightAnswers.toString());
+                    $('#allRightAnswers').val(rightAnswers);
                     $(this).unbind('submit').submit()
                 }
             });
