@@ -39,7 +39,13 @@ class TeachersController extends Controller
     public function store(Quiz $quiz, Question $question)
     {
         $data = request()->all();
-        QuizRepozitory::createQuiz($data, $quiz, $question);
+        $author = auth()->user()->id;
+        if (QuizRepozitory::createQuiz($data, $quiz, $question)) {
+            session()->flash('message', 'Quiz were created successfully');
+            return redirect('author/' . $author);
+        }
+        session()->flash('message', 'There was a problem processing your request, try again');
+        return redirect('author/' . $author);
     }
 
     /**

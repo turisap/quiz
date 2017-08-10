@@ -93,6 +93,8 @@ class QuizRepozitory
                     ]);
                 }
             });
+            return true;
         }
+        return false;
     }
 }
