@@ -64,10 +64,14 @@
 
 
             $(form).submit(function(e) {
+                e.preventDefault();
                 // check first whether radio buttons in all sets were checked
                 if(!checkRadioButtons()) {
-                    e.preventDefault();
                     $('#radioButtonsError').html('Please check right answers in all questions').css('visibility', 'visible');
+                } else {
+                    var rightAnswers = assemblyRightAnswersArray();
+                    $('#allRightAnswers').val(rightAnswers.toString());
+                    $(this).unbind('submit').submit()
                 }
             });
 
