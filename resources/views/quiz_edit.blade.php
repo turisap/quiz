@@ -1,7 +1,15 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: HP
- * Date: 10-Aug-17
- * Time: 5:49 PM
- */
+@extends('baseviews.base')
+
+@section('content')
+    <section id="quizEditing">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <form id="editQuizForm" method=>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection

@@ -8,6 +8,7 @@
 
 namespace App\Repositories;
 
+use App\Photo;
 use App\Question;
 use App\Quiz;
 use Illuminate\Support\Facades\DB;
@@ -43,14 +44,16 @@ class QuizRepozitory
         $answer4   =  $data['answer4']  ?? null;
         $right_answer = $data['all-right-answers'] ?? null;
 
-        $title       =  $data['title'] ?? null;
+        $title       =  $data['title']       ?? null;
         $description =  $data['description'] ?? null;
-        $category    =  $data['category'] ?? null;
-        $premium     =  $data['premium']  ?? null;
+        $category    =  $data['category']    ?? null;
+        $premium     =  $data['premium']     ?? null;
+        $file     =  $data['picture']     ?? null;
+
 
 
         if ($questions && $answer1 && $answer2 && $answer3 && $answer4 && $right_answer && $category
-            && $title && $description) {
+            && $title && $description && $file) {
 
             DB::transaction(function () use (
                 $quiz,
@@ -64,7 +67,8 @@ class QuizRepozitory
                 $answer1,
                 $questions,
                 $question,
-                $right_answer
+                $right_answer,
+                $file
             ) {
                 // create a quiz first
                 $quiz = $quiz->create([
@@ -77,6 +81,19 @@ class QuizRepozitory
                     'views'       => 0
                 ]);
 
+                // save a photo
+                $photo = new Photo();
+                $name = $file->hashName();
+                $size = $file->getSize();
+
+                $file->storeAs('quizzes', $name);
+
+                $photo->create([
+                    'user_id'   => auth()->user()->id,
+                    'quiz_id'   => $quiz->id,
+                    'name'      => $name,
+                    'size'      => $size,
+                ]);
 
                 for ($i = 0; $i <= count($questions); $i++) {
                     if ($i == 1) {

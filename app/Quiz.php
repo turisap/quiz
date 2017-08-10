@@ -41,15 +41,14 @@ class Quiz extends Model
     }
 
 
-
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      *
-     * Relationships with photos
+     * Relatioships with photos
      */
     public function photo()
     {
-        return $this->hasMany(Photo::class);
+        return $this->hasOne(Photo::class);
     }
 
     /**
