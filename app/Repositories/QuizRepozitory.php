@@ -12,6 +12,7 @@ use App\Photo;
 use App\Question;
 use App\Quiz;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class QuizRepozitory
 {
@@ -84,13 +85,6 @@ class QuizRepozitory
                 $size = $file->getSize();
                 $file->storeAs('quizzes', $name);
 
-                $photo->create([
-                    'user_id'   => 0,
-                    'quiz_id'   => $quiz->id,
-                    'name'      => $name,
-                    'size'      => $size,
-                ]);
-
                 // create a quiz first
                 $quiz = $quiz->create([
                     'author_id'   => auth()->user()->id,
@@ -100,6 +94,13 @@ class QuizRepozitory
                     'picture'     => $name,
                     'premium'     => $premium,
                     'views'       => 0
+                ]);
+
+                $photo->create([
+                    'user_id'   => 0,
+                    'quiz_id'   => $quiz->id,
+                    'name'      => $name,
+                    'size'      => $size,
                 ]);
 
 
@@ -178,6 +179,8 @@ class QuizRepozitory
                 // save a photo
                 $photo = Photo::where('quiz_id', $quiz_id)->get()->first();
 
+                $old_name = $photo->name;
+
                 $photo->fill([
                     'name'      => $file->hashName(),
                     'size'      => $file->getSize(),
@@ -185,6 +188,10 @@ class QuizRepozitory
 
                 $photo->save();
                 $file->storeAs('quizzes', $file->hashName());
+
+                // delete old photo
+                Storage::delete('/quizzes/' . $old_name);
+
 
 
                 // create a quiz first
@@ -202,8 +209,6 @@ class QuizRepozitory
                 $quiz->save();
 
                 $existing_questions = $quiz->questions;
-
-                //dd($existing_questions);
 
                 foreach ($existing_questions as $key => $value) {
                      $value->fill([

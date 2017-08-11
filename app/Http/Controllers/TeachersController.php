@@ -36,7 +36,7 @@ class TeachersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Quiz $quiz, Question $question)
+    public function store(Question $question, Quiz $quiz)
     {
         $data = request()->all();
         $author = auth()->user()->id;
