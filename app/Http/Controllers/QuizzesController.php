@@ -44,6 +44,19 @@ class QuizzesController extends Controller
     }
 
 
+    /**
+     * @param Quiz $quiz
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * Deletes a given quiz
+     */
+    public function delete(Quiz $quiz)
+    {
+        $quiz->delete();
+        return back();
+    }
+
+
 
     /**
      * repsonds on AJAX request from like button

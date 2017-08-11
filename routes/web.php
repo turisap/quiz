@@ -25,6 +25,7 @@ Route::get('login/facebook/callback', 'FacebookController@handleProviderCallback
 Route::get('/myquizzes/{user}', 'QuizzesController@index');
 Route::get('/quizzes/like/{quiz}', 'QuizzesController@like');
 Route::get('/quizzes/unlike/{quiz}', 'QuizzesController@unlike');
+Route::get('/quizzes/delete/{quiz}', 'QuizzesController@delete');
 Route::resource('author', 'TeachersController');
 Route::get('/remove-question/{question}', 'TeachersController@deleteQuestion');
 
@@ -42,4 +43,12 @@ Route::group(['prefix' => 'premium'], function () {
 
 // profile routes
 Route::resource('profile', 'ProfilesController');
+
+// admin routes
+Route::group(['prefix' => 'admin'], function () {
+   Route::get('/', 'AdminController@index');
+   Route::get('/grant-teacher/{user}', 'AdminController@grantTeacherStatus');
+   Route::get('/grant-admin/{user}', 'AdminController@grantAdminStatus');
+   Route::get('/delete-user/{user}', 'AdminController@deleteUser');
+});
 

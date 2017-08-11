@@ -95,7 +95,7 @@
                     },
                     'picture' : {
                         required : true,
-                        extension : ""
+                        extension : "jpg|jpeg|png|gif"
                     },
                     'question[0]' : {
                         required : true

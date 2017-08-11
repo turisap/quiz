@@ -15,12 +15,16 @@
                     <p>{{$quiz->views}} views</p>
                 </div>
                 <div class="col-md-6" id="row-{{$quiz->id}}">
-                    @can('ableUnlike', $quiz->id)
-                        <a href="#" class="unlike-quiz-btn" data-content="{{$quiz->id}}" id="{{$quiz->id}}-unlike">Unlike</a>
-                    @endcan
-                    @can('ableLike', $quiz->id)
-                        <a href="#" class="like-quiz-btn" data-content="{{$quiz->id}}" id="{{$quiz->id}}-like">Like</a>
-                    @endcan
+                    @if(auth()->user()->student == 1)
+                        @can('ableUnlike', $quiz->id)
+                            <a href="#" class="unlike-quiz-btn" data-content="{{$quiz->id}}" id="{{$quiz->id}}-unlike">Unlike</a>
+                        @endcan
+                        @can('ableLike', $quiz->id)
+                            <a href="#" class="like-quiz-btn" data-content="{{$quiz->id}}" id="{{$quiz->id}}-like">Like</a>
+                        @endcan
+                    @else
+                        <a href="/quizzes/delete/{{$quiz->id}}"><i class="fa fa-times" aria-hidden="true"></i></a>
+                    @endif
                 </div>
             </div>
                 @if($quiz->premium == 1)

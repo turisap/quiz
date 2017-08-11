@@ -36,6 +36,9 @@
                     @else
                     <li><a href="/author/{{auth()->user()->id}}">My Quizzes <span>(author)</span></a></li>
                     @endif
+                    @if(auth()->user()->admin == 1)
+                    <li><a href="/admin">Admin</a></li>
+                    @endif
                 </ul>
             @else
                 <ul class="nav navbar-nav navbar-right">

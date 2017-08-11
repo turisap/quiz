@@ -17,6 +17,12 @@
         </div>
     </section>
     <section id="newQuizButton">
-        <a href="/author/create" class="btn btn-default">Create a new Quiz</a>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="/author/create" class="btn btn-default">Create a new Quiz</a>
+                </div>
+            </div>
+        </div>
     </section>
 @endsection

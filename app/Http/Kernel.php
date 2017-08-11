@@ -59,5 +59,6 @@ class Kernel extends HttpKernel
         'came_from_paypal' => \App\Http\Middleware\CameFromPaypal::class,
         'no_premium' => \App\Http\Middleware\NoPremium::class,
         'teacher'    => \App\Http\Middleware\Teacher::class,
+        'admin'      => \App\Http\Middleware\Admin::class,
     ];
 }
