@@ -46,11 +46,18 @@ class QuizRepozitory
     public static function createQuiz(array $data, $quiz, $question)
     {
         $questions =  $data['question'] ?? null;
+        $questions =  static::resort($questions);
         $answer1   =  $data['answer1']  ?? null;
+        $answer1   =  static::resort($answer1);
         $answer2   =  $data['answer2']  ?? null;
+        $answer2   =  static::resort($answer2);
         $answer3   =  $data['answer3']  ?? null;
+        $answer3   =  static::resort($answer3);
         $answer4   =  $data['answer4']  ?? null;
+        $answer4   =  static::resort($answer4);
         $right_answer = $data['all-right-answers'] ?? null;
+        $right_answer = explode(',', $right_answer);
+
 
         $title       =  $data['title']       ?? null;
         $description =  $data['description'] ?? null;
@@ -104,10 +111,7 @@ class QuizRepozitory
                 ]);
 
 
-                for ($i = 0; $i <= count($questions); $i++) {
-                    if ($i == 1) {
-                        continue;
-                    }
+                for ($i = 0; $i < count($questions); $i++) {
                     $question->create([
                         'quiz_id'   => $quiz->id,
                         'question'  => $questions[$i],
@@ -139,11 +143,14 @@ class QuizRepozitory
     public static function updateQuiz(array $data, $quiz, $question)
     {
         $questions =  $data['question'] ?? null;
+        $questions =  static::resort($questions);
+        dd($questions);
         $answer1   =  $data['answer1']  ?? null;
         $answer2   =  $data['answer2']  ?? null;
         $answer3   =  $data['answer3']  ?? null;
         $answer4   =  $data['answer4']  ?? null;
         $right_answer = $data['all-right-answers'] ?? null;
+        $right_answer = explode(',', $right_answer);
 
         $title       =  $data['title']       ?? null;
         $description =  $data['description'] ?? null;
@@ -227,5 +234,21 @@ class QuizRepozitory
             return true;
         }
         return false;
+    }
+
+
+    /**
+     * @param array $array
+     * @return array
+     *
+     * Gets rid on not consecutive keys like 0, 3, 4
+     */
+    public static function resort(array $array)
+    {
+        $result = [];
+        foreach ($array as $item) {
+            $result[] = $item;
+        }
+        return $result;
     }
 }
