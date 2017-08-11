@@ -50,7 +50,7 @@
                         </div>
                         @if($questions)
                             @for($i = 0; $i < count($questions); $i++)
-                                <div class="row questions" id="question-0">
+                                <div class="row questions" id="question-{{$i}}">
                                     <div class="col-md-12">
                                         @include('baseviews.panel_edit_question')
                                     </div>
@@ -132,9 +132,7 @@
             // delete a new question
             $('body').on('click','.remove-question', function () {
                 var question = $(this).parents('.questions');
-
                 question.remove();
-
                 scrollOnAdding();
             });
 
@@ -148,21 +146,17 @@
 
                 renameQuestions(extraQuestion);
                 scrollOnAdding();
-                //addRulesToNewInputs();
 
                 i++;
             });
 
             //uncheck other radio boxes onchange
-            $('body').on('change', '.radio', function () {
-
+            $('.radio').on('change', function () {
                 var parent = $(this).parents('.radio-row');
-                var secondRow = parent.siblings('.radio-row');
+                var closestParent = parent.siblings('.radio-row');
 
-                secondRow.find('input[type=radio]').prop('checked', false);
-                parent.find('input[type=radio]').not(this).prop('checked', false);
-
-
+                closestParent.find('.radio').prop('checked', false);
+                parent.find('.radio').not(this).prop('checked', false);
             });
 
 
@@ -213,20 +207,6 @@
                 }
             }
 
-
-            function addRulesToNewInputs()
-            {
-                $('.question').each(function () {
-                    $(this).rules("add", {
-                        required: true
-                    });
-                });
-                $('.answer').each(function () {
-                    $(this).rules("add", {
-                        required: true
-                    });
-                });
-            }
 
 
             // checks whether all sets of questions have one radio button checked

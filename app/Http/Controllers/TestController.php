@@ -18,9 +18,7 @@ class TestController extends Controller
 
         return view('test', compact('url'));*/
 
-        $user = User::find(12);
-
-        dd($user->rightsFor->toArray());
+        return view('test');
 
     }
 }

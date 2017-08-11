@@ -1,13 +1,40 @@
 <script src="http://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 <a id="test" class="foo" href="#">Test</a>
 
+<body>
+<ul class="list">
+    <li  class="t">he</li>
+    <li>he</li>
+    <li>he</li>
+    <li class="radio">he</li>
+    <li class="t">he</li>
+    <li>he</li>
+</ul>
+<ul class="list">
+    <li>dkf</li>
+    <li  class="t">dkf</li>
+    <li>dkf</li>
+    <li  class="t">dkf</li>
+    <li class="t">dkf</li>
+    <li>dkf</li>
+</ul>
+</body>
+
+
 
 
 <script>
 
     $(document).ready(function(){
 
-        var input = 'alla';
+        $('.radio').on('click', function () {
+            //alert('dfkl');
+            var p = $(this).parents('.list');
+            p.find('.t').css('color', 'red');
+        });
+
+
+        /*var input = 'alla';
         var words = input.split(' ');
         var characters = [];
 
@@ -25,11 +52,11 @@
             }
         }
 
-        console.log(true)
+        console.log(true)*/
+
+
 
     });
 
 
 </script>
-
-<img src="{{$url}}">

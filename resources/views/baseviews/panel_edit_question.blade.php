@@ -13,7 +13,7 @@
         </div>
         <div class="col-sm-1">
             <div class="form-group">
-                <input class="radio" type="radio" name="rightAnswer1[0]" id="rightAnswer1-1">
+                <input class="radio" type="radio" name="rightAnswer1{{$i}}" id="rightAnswer{{$i}}-1">
             </div>
         </div>
         <div class="col-sm-5">
@@ -23,7 +23,7 @@
         </div>
         <div class="col-sm-1">
             <div class="form-group">
-                <input class="radio" type="radio" name="rightAnswer2[0]" id="rightAnswer1-2">
+                <input class="radio" type="radio" name="rightAnswer2{{$i}}" id="rightAnswer{{$i}}-2">
             </div>
         </div>
     </div>
@@ -35,7 +35,7 @@
         </div>
         <div class="col-sm-1">
             <div class="form-group">
-                <input class="radio" type="radio" id="rightAnswer1-3" name="rightAnswer3[0]">
+                <input class="radio" type="radio" id="rightAnswer{{$i}}-3" name="rightAnswer3[{{$i}}]">
             </div>
         </div>
         <div class="col-sm-5">
@@ -45,7 +45,7 @@
         </div>
         <div class="col-sm-1">
             <div class="form-group">
-                <input class="radio" type="radio" id="rightAnswer1-4" name="rightAnswer4[0]">
+                <input class="radio" type="radio" id="rightAnswer{{$i}}-4" name="rightAnswer4[{{$i}}]">
             </div>
         </div>
     </div>
