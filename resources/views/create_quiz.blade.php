@@ -43,6 +43,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <input type="file" name="picture" class="form-control" title="picture">
+                                        <label class="error" generated="true" for="picture"></label>
                                     </div>
                                 </div>
                             </div>
@@ -84,8 +85,17 @@
 
 
 
-            /*form.validate({
+            form.validate({
                 rules : {
+                    'title' : {
+                        required : true
+                    },
+                    'description' : {
+                        required : true
+                    },
+                    'picture' : {
+                        required : true
+                    },
                     'question[0]' : {
                         required : true
                     },
@@ -101,8 +111,11 @@
                     'answer4[0]' : {
                         required : true
                     }
+                },
+                messages : {
+                    picture : 'Picture is required'
                 }
-            });*/
+            });
 
 
             $(form).submit(function(e) {

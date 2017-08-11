@@ -43,7 +43,7 @@
                                         <input type="checkbox" name="premium" @if($quiz->premium != NULL) checked @endif>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="file" name="picture" class="form-control" title="picture">
+                                        <input type="file" name="picture" class="form-control" title="picture" id="quizPicture">
                                     </div>
                                 </div>
                             </div>
@@ -53,6 +53,7 @@
                                 <div class="row questions" id="question-{{$i}}">
                                     <div class="col-md-12">
                                         @include('baseviews.panel_edit_question')
+                                        <a href="/remove-question/{{$questions[$i]->id}}" id="{{$questions[$i]->id}}" class="question-remove"><i class="fa fa-times" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
                             @endfor
@@ -129,12 +130,26 @@
 
 
 
-            // delete a new question
-            $('body').on('click','.remove-question', function () {
-                var question = $(this).parents('.questions');
-                question.remove();
-                scrollOnAdding();
+            // delete a question
+            $('.question-remove').on('click', function (e) {
+                e.preventDefault();
+
+                var questionId = $(this).attr('id');
+
+                $.ajax({
+                    url : '/remove-question/' + questionId,
+                    type : "GET",
+                    success : function (data) {
+                        if(!data.error) {
+                            removeQuestionViaAjax(questionId);
+                        }
+                    },
+                    error : function (data) {
+                        //console.log("Error", data);
+                    }
+                })
             });
+
 
 
             // adding extra fields for questions on click
@@ -255,6 +270,12 @@
                     rightNumbers.push(rightAnswers[c].split('-').pop());
                 }
                 return rightNumbers;
+            }
+
+
+            // remove a question markup after getting a positive response from the server about deleting the respective record from the database
+            function removeQuestionViaAjax(id){
+                $('#question-' + id).remove();
             }
 
         });

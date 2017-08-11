@@ -119,4 +119,18 @@ class TeachersController extends Controller
     {
         //
     }
+
+
+    /**
+     * @param Question $question
+     * @return string
+     *
+     * Delete a question from the edit quiz page via AJAX
+     */
+    public function deleteQuestion(Question $question)
+    {
+        $response = $question->delete()? true : false;
+        header("Content-type: application/json");
+        return json_encode($response);
+    }
 }
