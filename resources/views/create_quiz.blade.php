@@ -94,7 +94,8 @@
                         required : true
                     },
                     'picture' : {
-                        required : true
+                        required : true,
+                        extension : ""
                     },
                     'question[0]' : {
                         required : true
@@ -113,7 +114,10 @@
                     }
                 },
                 messages : {
-                    picture : 'Picture is required'
+                    picture : {
+                        required  : 'Picture is required',
+                        extension : 'File should have jpeg, png or jpeg extension'
+                    }
                 }
             });
 
@@ -135,9 +139,7 @@
             // delete a new question
             $('body').on('click','.remove-question', function () {
                 var question = $(this).parents('.questions');
-
                 question.remove();
-
                 scrollOnAdding();
             });
 
@@ -158,14 +160,11 @@
 
             //uncheck other radio boxes onchange
             $('body').on('change', '.radio', function () {
-
                 var parent = $(this).parents('.radio-row');
                 var secondRow = parent.siblings('.radio-row');
 
                 secondRow.find('input[type=radio]').prop('checked', false);
                 parent.find('input[type=radio]').not(this).prop('checked', false);
-
-
             });
 
 
