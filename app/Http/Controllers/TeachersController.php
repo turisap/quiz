@@ -41,7 +41,7 @@ class TeachersController extends Controller
         $data = request()->all();
         $author = auth()->user()->id;
         if (QuizRepozitory::createQuiz($data, $quiz, $question)) {
-            session()->flash('message', 'Quiz were created successfully');
+            session()->flash('message', 'Quiz was created successfully');
             return redirect('author/' . $author);
         }
         session()->flash('message', 'There was a problem processing your request, try again');
@@ -97,10 +97,16 @@ class TeachersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Question $question, $id)
     {
         $quiz = Quiz::find($id);
-        dd($quiz);
+        $author = auth()->user()->id;
+        if (QuizRepozitory::updateQuiz($request->all(), $quiz, $question)) {
+            session()->flash('message', 'Quiz was successfully updated');
+            return redirect('author/' . $author);
+        }
+        session()->flash('message', 'There was a problem processing your request, try again');
+        return redirect('author/' . $author);
     }
 
     /**

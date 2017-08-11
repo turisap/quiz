@@ -14,13 +14,13 @@
                                 <div class="form-group row">
                                     <label class="col-md-2 col-form-label">Title</label>
                                     <div class="col-md-10">
-                                        <input type="text" name="title" class="form-control">
+                                        <input type="text" name="title" class="form-control" value="{{$quiz->title}}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-2 col-form-label">Description</label>
                                     <div class="col-md-10">
-                                        <input type="text" name="description" class="form-control">
+                                        <input type="text" name="description" class="form-control" value="{{$quiz->description}}">
                                     </div>
                                 </div>
                             </div>
@@ -31,7 +31,7 @@
                                         <select name="category" class="form-control">
                                             @if(count($categories) > 0)
                                                 @foreach($categories as $category)
-                                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                                    <option value="{{$category->id}}" @if($quiz->category_id == $category->id) selected @endif>{{$category->name}}</option>
                                                 @endforeach
                                             @endif
                                         </select>
@@ -40,7 +40,7 @@
                                 <div class="form-group row">
                                     <div class="col-md-6">
                                         <label>Premium</label>
-                                        <input type="checkbox" name="premium">
+                                        <input type="checkbox" name="premium" @if($quiz->premium != NULL) checked @endif>
                                     </div>
                                     <div class="col-md-6">
                                         <input type="file" name="picture" class="form-control" title="picture">
@@ -60,6 +60,7 @@
                         <input type="hidden" name="all-right-answers" id="allRightAnswers">
                         <button type="submit" id="saveQuiz" class="btn btn-primary">Save</button>
                     </form>
+                    <label style="visibility: hidden;" id="radioButtonsError"></label>
                 </div>
             </div>
         </div>
@@ -87,25 +88,31 @@
 
 
 
-            /*form.validate({
+            form.validate({
              rules : {
-             'question[0]' : {
-             required : true
-             },
-             'answer1[0]' : {
-             required : true
-             },
-             'answer2[0]' : {
-             required : true
-             },
-             'answer3[0]' : {
-             required : true
-             },
-             'answer4[0]' : {
-             required : true
-             }
-             }
-             });*/
+                 'title' : {
+                      required : true
+                 },
+                 'description' : {
+                      required : true
+                 },
+                'question[0]' : {
+                      required : true
+                 },
+                 'answer1[0]' : {
+                      required : true
+                 },
+                 'answer2[0]' : {
+                      required : true
+                 },
+                 'answer3[0]' : {
+                     required : true
+                 },
+                 'answer4[0]' : {
+                     required : true
+                 }
+               }
+            });
 
 
             $(form).submit(function(e) {

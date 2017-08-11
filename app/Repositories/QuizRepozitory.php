@@ -34,7 +34,14 @@ class QuizRepozitory
         return collect($liked)->chunk(6);
     }
 
-
+    /**
+     * @param array $data
+     * @param $quiz
+     * @param $question
+     * @return bool
+     *
+     * Saves a quiz along with photos and questions
+     */
     public static function createQuiz(array $data, $quiz, $question)
     {
         $questions =  $data['question'] ?? null;
@@ -51,9 +58,9 @@ class QuizRepozitory
         $file     =  $data['picture']     ?? null;
 
 
-
         if ($questions && $answer1 && $answer2 && $answer3 && $answer4 && $right_answer && $category
             && $title && $description && $file) {
+
 
             DB::transaction(function () use (
                 $quiz,
@@ -70,30 +77,31 @@ class QuizRepozitory
                 $right_answer,
                 $file
             ) {
+
+                // save a photo
+                $photo = new Photo();
+                $name = $file->hashName();
+                $size = $file->getSize();
+                $file->storeAs('quizzes', $name);
+
+                $photo->create([
+                    'user_id'   => 0,
+                    'quiz_id'   => $quiz->id,
+                    'name'      => $name,
+                    'size'      => $size,
+                ]);
+
                 // create a quiz first
                 $quiz = $quiz->create([
                     'author_id'   => auth()->user()->id,
                     'category_id' => $category,
                     'title'       => $title,
                     'description' => $description,
-                    'picture'     => 'there should be an ID',
+                    'picture'     => $name,
                     'premium'     => $premium,
                     'views'       => 0
                 ]);
 
-                // save a photo
-                $photo = new Photo();
-                $name = $file->hashName();
-                $size = $file->getSize();
-
-                $file->storeAs('quizzes', $name);
-
-                $photo->create([
-                    'user_id'   => auth()->user()->id,
-                    'quiz_id'   => $quiz->id,
-                    'name'      => $name,
-                    'size'      => $size,
-                ]);
 
                 for ($i = 0; $i <= count($questions); $i++) {
                     if ($i == 1) {
@@ -109,6 +117,106 @@ class QuizRepozitory
                         'answer'    => $right_answer[$i]
                     ]);
                 }
+            });
+            return true;
+        }
+        return false;
+    }
+
+
+
+
+
+    /**
+     * @param array $data
+     * @param $quiz
+     * @param $question
+     * @return bool
+     *
+     * Updates a quiz
+     */
+    public static function updateQuiz(array $data, $quiz, $question)
+    {
+        $questions =  $data['question'] ?? null;
+        $answer1   =  $data['answer1']  ?? null;
+        $answer2   =  $data['answer2']  ?? null;
+        $answer3   =  $data['answer3']  ?? null;
+        $answer4   =  $data['answer4']  ?? null;
+        $right_answer = $data['all-right-answers'] ?? null;
+
+        $title       =  $data['title']       ?? null;
+        $description =  $data['description'] ?? null;
+        $category    =  $data['category']    ?? null;
+        $premium     =  $data['premium']     ?? null;
+        $file     =  $data['picture']     ?? null;
+
+        $quiz_id  = $quiz->id ?? null;
+
+
+
+        if ($questions && $answer1 && $answer2 && $answer3 && $answer4 && $right_answer && $category
+            && $title && $description && $file) {
+
+
+            DB::transaction(function () use (
+                $quiz,
+                $category,
+                $title,
+                $description,
+                $premium,
+                $answer4,
+                $answer3,
+                $answer2,
+                $answer1,
+                $questions,
+                $question,
+                $right_answer,
+                $file,
+                $quiz_id
+            ) {
+
+                // save a photo
+                $photo = Photo::where('quiz_id', $quiz_id)->get()->first();
+
+                $photo->fill([
+                    'name'      => $file->hashName(),
+                    'size'      => $file->getSize(),
+                ]);
+
+                $photo->save();
+                $file->storeAs('quizzes', $file->hashName());
+
+
+                // create a quiz first
+                 $quiz->fill([
+                    'author_id'   => auth()->user()->id,
+                    'category_id' => $category,
+                    'title'       => $title,
+                    'description' => $description,
+                    'picture'     => $photo->name,
+                    'premium'     => $premium,
+                    'views'       => 0
+                ]);
+
+
+                $quiz->save();
+
+                $existing_questions = $quiz->questions;
+
+                //dd($existing_questions);
+
+                foreach ($existing_questions as $key => $value) {
+                     $value->fill([
+                         'question' => $questions[$key],
+                         'answer1'  => $answer1[$key],
+                         'answer2'  => $answer2[$key],
+                         'answer3'  => $answer3[$key],
+                         'answer4'  => $answer4[$key],
+                         'answer'   => $right_answer[$key]
+                     ]);
+
+                     $value->save();
+                 }
             });
             return true;
         }
