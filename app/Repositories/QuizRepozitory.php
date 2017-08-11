@@ -144,11 +144,14 @@ class QuizRepozitory
     {
         $questions =  $data['question'] ?? null;
         $questions =  static::resort($questions);
-        dd($questions);
         $answer1   =  $data['answer1']  ?? null;
+        $answer1   =  static::resort($answer1);
         $answer2   =  $data['answer2']  ?? null;
+        $answer2   =  static::resort($answer2);
         $answer3   =  $data['answer3']  ?? null;
+        $answer3   =  static::resort($answer3);
         $answer4   =  $data['answer4']  ?? null;
+        $answer4   =  static::resort($answer4);
         $right_answer = $data['all-right-answers'] ?? null;
         $right_answer = explode(',', $right_answer);
 
