@@ -156,7 +156,7 @@ class QuizRepozitory
 
 
         if ($questions && $answer1 && $answer2 && $answer3 && $answer4 && $right_answer && $category
-            && $title && $description && $file) {
+            && $title && $description) {
 
 
             DB::transaction(function () use (
@@ -176,23 +176,24 @@ class QuizRepozitory
                 $quiz_id
             ) {
 
-                // save a photo
                 $photo = Photo::where('quiz_id', $quiz_id)->get()->first();
 
-                $old_name = $photo->name;
+                if (isset($file)) {
+                    // save a photo
 
-                $photo->fill([
-                    'name'      => $file->hashName(),
-                    'size'      => $file->getSize(),
-                ]);
+                    $old_name = $photo->name;
 
-                $photo->save();
-                $file->storeAs('quizzes', $file->hashName());
+                    $photo->fill([
+                        'name'      => $file->hashName(),
+                        'size'      => $file->getSize(),
+                    ]);
 
-                // delete old photo
-                Storage::delete('/quizzes/' . $old_name);
+                    $photo->save();
+                    $file->storeAs('quizzes', $file->hashName());
 
-
+                    // delete old photo
+                    Storage::delete('/quizzes/' . $old_name);
+                }
 
                 // create a quiz first
                  $quiz->fill([
