@@ -275,7 +275,7 @@
 
             // remove a question markup after getting a positive response from the server about deleting the respective record from the database
             function removeQuestionViaAjax(id){
-                $('#question-' + id).remove();
+                $('#' + id).parents('.questions').remove();
             }
 
         });
