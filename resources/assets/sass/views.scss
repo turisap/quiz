@@ -1,7 +1,7 @@
 $border_main: #ddd;
 /* =================== COMPONENTS ================================== */
 .quiz-panel.panel.panel-default {
-  height: 250px;
+  height: 300px;
   h4 {
     margin: 0;
   }
@@ -10,6 +10,10 @@ $border_main: #ddd;
   }
   .quiz-photo {
     border-bottom: 1px solid $border_main;
+    min-height: 180px;
+  }
+  .premium {
+    z-index: 250;
   }
   .unlike-quiz-btn, .like-quiz-btn {
     -webkit-background-size:cover;

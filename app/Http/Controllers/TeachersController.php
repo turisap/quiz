@@ -62,7 +62,10 @@ class TeachersController extends Controller
             abort(403, 'This page does not belongs to you');
         }
         $created_quizzes = $author->rightsFor->chunk(6);
+        //$sets = $created_quizzes->with('photo');
         $edit = true;
+
+        //dd($created_quizzes->first());
 
         return view('my_created', compact('created_quizzes', 'edit'));
     }

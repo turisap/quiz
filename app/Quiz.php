@@ -48,7 +48,7 @@ class Quiz extends Model
      */
     public function photo()
     {
-        return $this->hasOne(Photo::class);
+        return $this->hasOne(Photo::class, 'quiz_id');
     }
 
     /**

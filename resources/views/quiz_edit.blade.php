@@ -53,7 +53,9 @@
                                 <div class="row questions" id="question-{{$i}}">
                                     <div class="col-md-12">
                                         @include('baseviews.panel_edit_question')
-                                        <a href="/remove-question/{{$questions[$i]->id}}" id="{{$questions[$i]->id}}" class="question-remove"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                        <a href="/remove-question/{{$questions[$i]->id}}" id="{{$questions[$i]->id}}" class="question-remove">
+
+                                        </a>
                                     </div>
                                 </div>
                             @endfor

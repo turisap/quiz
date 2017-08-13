@@ -5,11 +5,11 @@
         @else
             <a href="/author/{{$quiz->id}}/edit" class="quiz-link">
         @endif
-        <div class="panel-heading quiz-photo">
+        <div class="panel-heading quiz-photo" style="background: url('{{$quiz->url}}'); background-size: cover; ">
             @if($quiz->premium == 1)
                 <div class="row">
                     <div class="col-md-12">
-                        <img src="/images/static/premium.png">
+                        <img src="/images/static/premium.png" class="premium">
                     </div>
                 </div>
             @endif

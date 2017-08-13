@@ -62,7 +62,7 @@ class QuizRepozitory
         $title       =  $data['title']       ?? null;
         $description =  $data['description'] ?? null;
         $category    =  $data['category']    ?? null;
-        $premium     =  $data['premium']     ?? null;
+        $premium     =  $data['premium'] ? 1 : null;
         $file     =  $data['picture']     ?? null;
 
 
@@ -143,22 +143,25 @@ class QuizRepozitory
     public static function updateQuiz(array $data, $quiz, $question)
     {
         $questions =  $data['question'] ?? null;
-        $questions =  static::resort($questions);
         $answer1   =  $data['answer1']  ?? null;
-        $answer1   =  static::resort($answer1);
         $answer2   =  $data['answer2']  ?? null;
-        $answer2   =  static::resort($answer2);
         $answer3   =  $data['answer3']  ?? null;
-        $answer3   =  static::resort($answer3);
         $answer4   =  $data['answer4']  ?? null;
-        $answer4   =  static::resort($answer4);
         $right_answer = $data['all-right-answers'] ?? null;
         $right_answer = explode(',', $right_answer);
+
+        if ($questions && $answer1 && $answer2 && $answer3 && $answer4 && $right_answer) {
+            $questions =  static::resort($questions);
+            $answer1   =  static::resort($answer1);
+            $answer2   =  static::resort($answer2);
+            $answer3   =  static::resort($answer3);
+            $answer4   =  static::resort($answer4);
+        }
 
         $title       =  $data['title']       ?? null;
         $description =  $data['description'] ?? null;
         $category    =  $data['category']    ?? null;
-        $premium     =  $data['premium']     ?? null;
+        $premium     =  $data['premium'] ? 1 : null;
         $file     =  $data['picture']     ?? null;
 
         $quiz_id  = $quiz->id ?? null;
@@ -189,7 +192,6 @@ class QuizRepozitory
                 $photo = Photo::where('quiz_id', $quiz_id)->get()->first();
 
                 if (isset($file)) {
-                    // save a photo
 
                     $old_name = $photo->name;
 
