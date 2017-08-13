@@ -40,8 +40,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <p>Quizland 2017</p>
+                <h4><i class="fa fa-eercast" aria-hidden="true"></i>  Quizland 2017 <i class="fa fa-eercast" aria-hidden="true"></i></h4>
             </div>
+        </div>
+        <div class="row">
+            <p>We are a group of teachers who want to improve the way children study in our city's schools</p>
+            <p>quizland-teachers{{'@'}}gmail.com</p>
         </div>
     </div>
 </footer>

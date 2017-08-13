@@ -14,7 +14,7 @@ class HomeController extends Controller
             ->take(12);
 
 
-        $chunks = $quizzes->chunk(6);
+        $chunks = $quizzes->chunk(4);
 
         //dd($chunks);
 

@@ -4,6 +4,10 @@ body, html{
   overflow-x:hidden;
 }
 
+h2{
+  margin-bottom: 40px;
+}
+
 #wholeNav {
   height: 5em!important;
 }
@@ -16,6 +20,9 @@ footer {
   height: 16em;
   background-color: #878787;
   color: #d8d8d8;
+  .container-fluid {
+    text-align: center;
+  }
   p {
     margin: 0;
   }

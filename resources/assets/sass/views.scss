@@ -1,12 +1,38 @@
 $border_main: #ddd;
-h2{
-  margin-bottom: 40px;
-}
-
-
 /* =================== COMPONENTS ================================== */
 .quiz-panel.panel.panel-default {
-  height: 350px;
+  height: 250px;
+  h4 {
+    margin: 0;
+  }
+  p {
+    margin: 0;
+  }
+  .quiz-photo {
+    border-bottom: 1px solid $border_main;
+  }
+  .unlike-quiz-btn, .like-quiz-btn {
+    -webkit-background-size:cover;
+    background-size:cover;
+    display: inline-block;
+    width: 32px;
+    height: 30px;
+    margin-left: 50%;
+  }
+  .unlike-quiz-btn{
+    background: url('/images/static/liked.png');
+  }
+  .like-quiz-btn{
+    background: url('/images/static/unliked.png');
+  }
+  img.views {
+    display: inline;
+  }
+  .number-views {
+    width: 30%;
+    display:inline;
+    font-weight: bold;
+  }
 }
 
 /* ======================= UTILITY CLASSES ========================= */

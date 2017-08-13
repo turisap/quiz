@@ -1,11 +1,46 @@
-h2 {
-  margin-bottom: 40px;
-}
-
 /* =================== COMPONENTS ================================== */
 
 .quiz-panel.panel.panel-default {
-  height: 350px;
+  height: 250px;
+}
+
+.quiz-panel.panel.panel-default h4 {
+  margin: 0;
+}
+
+.quiz-panel.panel.panel-default p {
+  margin: 0;
+}
+
+.quiz-panel.panel.panel-default .quiz-photo {
+  border-bottom: 1px solid #ddd;
+}
+
+.quiz-panel.panel.panel-default .unlike-quiz-btn,
+.quiz-panel.panel.panel-default .like-quiz-btn {
+  background-size: cover;
+  display: inline-block;
+  width: 32px;
+  height: 30px;
+  margin-left: 50%;
+}
+
+.quiz-panel.panel.panel-default .unlike-quiz-btn {
+  background: url("/images/static/liked.png");
+}
+
+.quiz-panel.panel.panel-default .like-quiz-btn {
+  background: url("/images/static/unliked.png");
+}
+
+.quiz-panel.panel.panel-default img.views {
+  display: inline;
+}
+
+.quiz-panel.panel.panel-default .number-views {
+  width: 30%;
+  display: inline;
+  font-weight: bold;
 }
 
 /* ======================= UTILITY CLASSES ========================= */

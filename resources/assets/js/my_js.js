@@ -55,13 +55,13 @@ function makeQuizLiked(quiz_id){
     $('#' + quiz_id + '-like').remove();
 
     var parent = $('#row-'  + quiz_id);
-    parent.append('<a href="#"  class="unlike-quiz-btn"  id="' + quiz_id + '-unlike" data-content="'+ quiz_id +'" >Unlike</a>');
+    parent.append('<a href="#"  class="unlike-quiz-btn"  id="' + quiz_id + '-unlike" data-content="'+ quiz_id +'" ></a>');
 }
 
 function makeQuizUnliked(quiz_id){
     $('#' + quiz_id + '-unlike').remove();
     var parent = $('#row-'  + quiz_id);
-    parent.append('<a href="#" class="like-quiz-btn"  id="' + quiz_id + '-like" data-content="'+ quiz_id + '" >Like</a>');
+    parent.append('<a href="#" class="like-quiz-btn"  id="' + quiz_id + '-like" data-content="'+ quiz_id + '" ></a>');
 }
 
 
