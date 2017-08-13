@@ -186,17 +186,31 @@
   color: darkred;
 }
 
-/* ======================================= CATEGROY PAGE ============================================= */
+/* ======================================= CATEGORY PAGE ============================================= */
 
 section#category {
   background-color: #2ab27b;
-  color: white;
 }
 
-section#category h2,
-section#category h3,
-section#category h4 {
-  margin-left: 0.1%;
+section#category h2 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color: #dddddd;
+}
+
+section#category h2 small {
+  color: #ddd;
+  font-size: 20px;
+}
+
+section#banner .main-quiz.img-circle {
+  max-height: 250px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+section#banner .button-play {
+  margin-bottom: 15px;
 }
 
 section#banner {

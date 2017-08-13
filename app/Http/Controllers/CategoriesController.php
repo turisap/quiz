@@ -16,8 +16,8 @@ class CategoriesController extends Controller
     {
         $data = CategoryRepository::getInfoForIndexPage($category);
 
-        $main_quiz = $data['quiz'];
-        $quizzes   = $data['quizzes'];
+        $main_quiz = $data['quiz'] ?? null;
+        $quizzes   = $data['quizzes'] ?? null;
 
         //dd($quizzes);
 

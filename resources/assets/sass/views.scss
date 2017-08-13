@@ -152,12 +152,28 @@ $border_main: #ddd;
 
 
 
-/* ======================================= CATEGROY PAGE ============================================= */
+/* ======================================= CATEGORY PAGE ============================================= */
 section#category {
   background-color: #2ab27b;
-  color:white;
-  h2, h3, h4 {
-    margin-left: 0.1%;
+  h2 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: #dddddd;
+    small {
+      color: #ddd;
+      font-size: 20px;
+    }
+  }
+}
+
+section#banner {
+  .main-quiz.img-circle {
+    max-height: 250px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .button-play {
+    margin-bottom: 15px;
   }
 }
 

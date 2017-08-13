@@ -29,8 +29,12 @@ class CategoryRepository
             ->first();
         $quizzes = Quiz::where('category_id', $category->id)
             ->get();
+        $quizzes = $quizzes->sortByDesc('views');
 
         $quizzes = static::getQuizzesPhoto($quizzes);
+        if ($main_quiz->photo) {
+            $main_quiz->url = Storage::disk('public')->url('quizzes/' . $main_quiz->photo->name);
+        }
         $quizzes = $quizzes->chunk(4);
 
         return [
