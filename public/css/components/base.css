@@ -20,7 +20,7 @@ footer {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 4em;
+  height: 16em;
   background-color: #878787;
   color: #d8d8d8;
 }

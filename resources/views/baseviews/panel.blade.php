@@ -15,6 +15,7 @@
                     <p>{{$quiz->views}} views</p>
                 </div>
                 <div class="col-md-6" id="row-{{$quiz->id}}">
+                    @if(auth()->check())
                     @if(auth()->user()->student == 1)
                         @can('ableUnlike', $quiz->id)
                             <a href="#" class="unlike-quiz-btn" data-content="{{$quiz->id}}" id="{{$quiz->id}}-unlike">Unlike</a>
@@ -24,6 +25,7 @@
                         @endcan
                     @else
                         <a href="/quizzes/delete/{{$quiz->id}}"><i class="fa fa-times" aria-hidden="true"></i></a>
+                    @endif
                     @endif
                 </div>
             </div>

@@ -46,9 +46,9 @@ Route::resource('profile', 'ProfilesController');
 
 // admin routes
 Route::group(['prefix' => 'admin'], function () {
-   Route::get('/', 'AdminController@index');
-   Route::get('/grant-teacher/{user}', 'AdminController@grantTeacherStatus');
-   Route::get('/grant-admin/{user}', 'AdminController@grantAdminStatus');
-   Route::get('/delete-user/{user}', 'AdminController@deleteUser');
+    Route::get('/', 'AdminController@index');
+    Route::get('/grant-teacher/{user}', 'AdminController@grantTeacherStatus');
+    Route::get('/grant-admin/{user}', 'AdminController@grantAdminStatus');
+    Route::get('/delete-user/{user}', 'AdminController@deleteUser');
 });
 

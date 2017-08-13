@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="/css/components/base.css">
     <link rel="stylesheet" href="/css/views/views.css">
 
+    <!-- ANIMATE.CSS -->
+    <link rel="stylesheet" href="/css/plugins/animate.css">
+
 </head>
 <body>
 
@@ -54,6 +57,8 @@
 <script src="/js/my_js.js"></script>
 <!-- Fileinput -->
 <script src="/js/components/bootstrap.file-input.js"></script>
+<!-- WOW -->
+<script  src="/js/components/wow.js" type="text/javascript"></script>
 
 @yield('footer')
 
