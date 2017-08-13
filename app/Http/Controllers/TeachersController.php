@@ -9,9 +9,13 @@ use App\User;
 use App\Quiz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
+use App\Repositories\QuizPhotos;
 
 class TeachersController extends Controller
 {
+
+    use QuizPhotos;
 
     public function __construct()
     {
@@ -61,11 +65,10 @@ class TeachersController extends Controller
         if (Gate::denies('isThisAuthor', $author->id)) {
             abort(403, 'This page does not belongs to you');
         }
-        $created_quizzes = $author->rightsFor->chunk(6);
-        //$sets = $created_quizzes->with('photo');
+        $created_quizzes = $author->rightsFor;
+        $created_quizzes = static::getQuizzesPhoto($created_quizzes);
+        $created_quizzes = $created_quizzes->chunk(4);
         $edit = true;
-
-        //dd($created_quizzes->first());
 
         return view('my_created', compact('created_quizzes', 'edit'));
     }

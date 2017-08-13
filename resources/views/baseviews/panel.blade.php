@@ -33,7 +33,7 @@
                             <a href="#" class="like-quiz-btn" data-content="{{$quiz->id}}" id="{{$quiz->id}}-like"></a>
                         @endcan
                     @else
-                        <a href="/quizzes/delete/{{$quiz->id}}"><i class="fa fa-times" aria-hidden="true"></i></a>
+                        <a href="/quizzes/delete/{{$quiz->id}}"><i class="fa fa-trash-o fa-3x pull-right" aria-hidden="true"></i></a>
                     @endif
                     @endif
                 </div>

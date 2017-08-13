@@ -176,6 +176,16 @@
   height: 10vw;
 }
 
+/* ==================================== QUIZZES FOR TEACHERS PAGE =================================== */
+
+#myCreated {
+  margin-top: 50px;
+}
+
+#myCreated .fa-trash-o {
+  color: darkred;
+}
+
 /* ======================================= CATEGROY PAGE ============================================= */
 
 section#category {

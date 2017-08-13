@@ -10,9 +10,13 @@ namespace App\Repositories;
 
 use Illuminate\Support\Facades\DB;
 use App\Quiz;
+use Illuminate\Support\Facades\Storage;
+use App\Repositories\QuizPhotos;
 
 class CategoryRepository
 {
+
+    use QuizPhotos;
 
     public static function getInfoForIndexPage($category)
     {
@@ -24,8 +28,10 @@ class CategoryRepository
             ->where('category_id', $category->id)
             ->first();
         $quizzes = Quiz::where('category_id', $category->id)
-            ->get()
-            ->chunk(6);
+            ->get();
+
+        $quizzes = static::getQuizzesPhoto($quizzes);
+        $quizzes = $quizzes->chunk(4);
 
         return [
             'quiz' => $main_quiz,
