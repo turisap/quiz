@@ -203,7 +203,6 @@ section#categoryQuizzes {
 
 /* ================================ AUTHORIZATION PAGES ====================================== */
 section#login {
-  min-height: calc(100vh - 16em);
   margin-top: 50px;
   margin-bottom: 50px;
 }
@@ -212,6 +211,10 @@ section#login {
   background: #3b5998;
   color: white;
   margin-left: 20px;
+}
+
+#signupForm {
+  margin-bottom: 40px;
 }
 
 
