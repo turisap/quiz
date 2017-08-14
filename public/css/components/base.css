@@ -66,9 +66,15 @@ footer p {
   background-color: #eeeeee;
 }
 
-#last,
+#categories,
 .right-nav {
   border-right: 1px #ccc solid;
   border-left: 1px #ccc solid;
+}
+
+#last,
+#myQuizzes {
+  border-right: 1px #ccc solid;
+  border-left: none !important;
 }
 

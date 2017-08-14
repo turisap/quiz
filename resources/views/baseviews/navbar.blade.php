@@ -13,7 +13,7 @@
         <div class="collapse navbar-collapse" id="mainNav">
             <ul class="nav navbar-nav">
                 @if(count($categories) > 0)
-                    <li class="dropdown main">
+                    <li class="dropdown main" id="categories">
                         <a href="#" class="dropdown-toggle main" data-toggle="dropdown" role="button" aria-expanded="false">Categories <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             @foreach($categories as $key => $value)
@@ -21,6 +21,7 @@
                                 <li class="divider"></li>
                             @endforeach
                         </ul>
+                    </li>
                 @endif
                 @if( ! auth()->check())
                      <li id="last" class="main"><a href="/premium">Premium</a></li>
@@ -32,9 +33,9 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="right-nav"><a href="/profile/{{auth()->user()->id}}">{{auth()->user()->first_name}}</a></li>
                     @if(auth()->user()->teacher != 1 && auth()->user()->admin != 1)
-                    <li><a href="/myquizzes/{{auth()->user()->id}}" >My quizes</a></li>
+                    <li id="myQuizzes"><a href="/myquizzes/{{auth()->user()->id}}" >My quizes</a></li>
                     @else
-                    <li><a href="/author/{{auth()->user()->id}}">My Quizzes <span>(author)</span></a></li>
+                    <li id="myQuizzes"><a href="/author/{{auth()->user()->id}}">My Quizzes <span>(author)</span></a></li>
                     @endif
                     @if(auth()->user()->admin == 1)
                     <li><a href="/admin">Admin</a></li>

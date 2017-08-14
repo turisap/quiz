@@ -29,7 +29,7 @@
                         <div class="col-md-6">
                             <dl class="list-group">
                                 <dt>Gender:</dt>
-                                <dd>{{$profile->gender}}</dd>
+                                <dd>@if($profile->gender == 0) male @else female @endif</dd>
                                 <dt>Favorite Subject:</dt>
                                 <dd>{{$profile->favorite_subject}}</dd>
                                 <dt>Shortly about:</dt>
