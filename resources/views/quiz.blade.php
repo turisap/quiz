@@ -140,10 +140,10 @@
                             wrapper.addClass('right-answer').delay(1000).queue(function () {
                                 wrapper.removeClass('right-answer');
                             });
-                            setTimeout(function() {
-                                $(wrapper).dequeue()
-                            }, 1000)
                         }
+                        setTimeout(function() {
+                            $(wrapper).dequeue()
+                        }, 1000)
                     }
                 }
             });
@@ -203,6 +203,7 @@
             $('#2').remove();
             $('#3').remove();
             $('#4').remove();
+            $('#checkAnswer').remove();
         }
 
         function queuedAnimationAndNewQuestion(respond){
@@ -233,7 +234,6 @@
             });
 
             wrap.dequeue('new_question');
-
         }
 
 
