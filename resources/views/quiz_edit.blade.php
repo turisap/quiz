@@ -4,12 +4,19 @@
 
     <section id="newQuestions">
         <div class="container-fluid">
+            <div class="row head">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <h4 class="page-header">Fill the form to save the quiz</h4>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     <form id="questionsForm" method="post" action="/author/{{$quiz->id}}" enctype="multipart/form-data">
                         {{csrf_field()}}
                         {{method_field('PATCH')}}
-                        <div class="row quiz-info" style="border: solid black 1px;">
+                        <div class="row quiz-info panel">
                             <div class="col-md-6">
                                 <div class="form-group row">
                                     <label class="col-md-2 col-form-label">Title</label>
@@ -50,7 +57,7 @@
                         </div>
                         @if($questions)
                             @for($i = 0; $i < count($questions); $i++)
-                                <div class="row questions" id="question-{{$i}}">
+                                <div class="row questions panel" id="question-{{$i}}">
                                     <div class="col-md-12">
                                         @include('baseviews.panel_edit_question')
                                         <a href="/remove-question/{{$questions[$i]->id}}" id="{{$questions[$i]->id}}" class="question-remove">
@@ -61,14 +68,18 @@
                             @endfor
                         @endif
                         <input type="hidden" name="all-right-answers" id="allRightAnswers">
-                        <button type="submit" id="saveQuiz" class="btn btn-primary">Save</button>
                     </form>
-                    <label style="visibility: hidden;" id="radioButtonsError"></label>
+                    <div class="row panel buttons">
+                        <div class="col-md-12">
+                            <button type="submit" id="saveQuiz" class="btn btn-primary">Save</button>
+                            <label style="visibility: hidden;" id="radioButtonsError"></label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <div class="row questions" id="stub" style="visibility: hidden;">
+    <div class="row questions panel" id="stub" style="visibility: hidden;">
         <div class="col-md-12">
             @include('baseviews.panel_question')
             <a href="#" class="btn btn-danger remove-question"><i class="fa fa-times" aria-hidden="true"></i></a>
@@ -117,6 +128,9 @@
                }
             });
 
+            $('#saveQuiz').on('click', function() {
+               $(form).submit();
+            });
 
             $(form).submit(function(e) {
                 e.preventDefault();

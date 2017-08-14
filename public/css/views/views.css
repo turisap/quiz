@@ -341,3 +341,13 @@ section#profileInfo #img4 {
   margin-bottom: 30px;
 }
 
+/* =================================== EDIT QUIZ PAGE =================================== */
+
+section#newQuestions .buttons {
+  padding: 15px;
+}
+
+section#newQuestions .quiz-info.panel {
+  padding-bottom: 15px;
+}
+
