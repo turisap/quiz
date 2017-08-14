@@ -24,7 +24,7 @@ class QuestionsController extends Controller
     public function play(Quiz $quiz)
     {
         // check first whether a user has premium access in the case of attempt to play a premium quiz
-        if ( ! $quiz->checkAccessToPremium()) {
+        if (!$quiz->checkAccessToPremium()) {
             return redirect()->route('premium');
         }
 

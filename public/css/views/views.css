@@ -248,6 +248,10 @@ section#banner #image {
           justify-content: center;
 }
 
+section#banner .quiz-link {
+  margin-bottom: 10px;
+}
+
 section#categoryQuizzes {
   margin-top: 50px;
 }

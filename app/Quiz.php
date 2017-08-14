@@ -77,5 +77,6 @@ class Quiz extends Model
             }
             return true;
         }
+        return true;
     }
 }
