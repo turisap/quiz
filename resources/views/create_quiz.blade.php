@@ -220,6 +220,7 @@
 
 
                 form.append(extraQuestion);
+                extraQuestion.hide().fadeIn(1000)
             }
 
 
