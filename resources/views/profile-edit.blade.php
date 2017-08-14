@@ -3,12 +3,14 @@
 @section('content')
 
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="page-header">Your profile information</h2>
-                <p class="lead">Please fill all fields to provide us with relevant information</p>
+        <section id="editProfileHead">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="page-header">Your profile information</h4>
+                    <p class="lead">Please fill all fields to provide us with relevant information</p>
+                </div>
             </div>
-        </div>
+        </section>
         <div class="row">
             <div class="col-md-6 col-lg-offset-3">
                 @if(count($errors) > 0)
@@ -92,7 +94,7 @@
                 </form>
             </div>
         </div>
-        <div class="row">
+        <div class="row text-center" id="conditions">
             <div class="col-md-12">
                 <p>All information will be used for control of academic performance purposes only.</p>
             </div>
@@ -126,7 +128,7 @@
                     }
                 }
             })
-        })
+        });
 
         $('input[type=file]').bootstrapFileInput();
 
