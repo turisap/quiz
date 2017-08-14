@@ -54,7 +54,31 @@
 
         console.log(true)*/
 
+        $('body').on('click', function(next) {
 
+            var list = $('.list');
+
+            list.queue('fading', function () {
+                var self = this;
+                $(this).fadeOut(1000);
+
+                setTimeout(function() {
+                    $(self).dequeue('fading')
+                }, 3000)
+            });
+
+            list.queue('fading', function () {
+                var self = this;
+                $(this).fadeIn(1000);
+
+                setTimeout(function() {
+                    $(self).dequeue('fading')
+                }, 3000)
+            });
+
+            list.dequeue('fading');
+
+        })
 
     });
 

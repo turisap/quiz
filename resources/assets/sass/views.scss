@@ -52,6 +52,15 @@ $border_main: #ddd;
   border-left: $border_main solid 1px;
 }
 
+.opaque {
+  opacity: 0 !important;
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out ;
+  -ms-transition: 0.5s ease-in-out ;
+  -o-transition: 0.5s ease-in-out ;
+  transition: 0.5s ease-in-out ;
+}
+
 
 /* ======================== HOMEPAGE STYLES ========================= */
 
@@ -295,4 +304,19 @@ section#newQuestions {
 /* =============================== PREMIUM LANDING ==================================== */
 #premiumLanding {
   margin-bottom: 160px;
+}
+
+/* =============================== PLAY QUIZ PAGE ====================================== */
+section#quizHead {
+  h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+section#quizPlay {
+  margin-top: 20px;
+  margin-bottom: 18em;
+  #wrapper {
+    padding: 40px;
+  }
 }
