@@ -215,3 +215,27 @@ section#login {
 }
 
 
+/* ================================ CREATE A QUIZ ============================================== */
+
+section#newQuestions {
+  .quiz-info {
+    padding: 20px 20px 0 20px;
+  }
+  .questions.panel {
+    padding: 20px;
+  }
+  .quiz-info:hover, .questions.panel:hover {
+    background-color: #EEEEEE;
+  }
+  .panel.buttons {
+    padding: 20px;
+    button {
+      margin-right: 5px;
+    }
+    label {
+      color: red;
+      margin-left: 10px;
+    }
+  }
+}
+

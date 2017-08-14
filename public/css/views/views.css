@@ -266,3 +266,31 @@ section#login {
   margin-left: 20px;
 }
 
+/* ================================ CREATE A QUIZ ============================================== */
+
+section#newQuestions .quiz-info {
+  padding: 20px 20px 0 20px;
+}
+
+section#newQuestions .questions.panel {
+  padding: 20px;
+}
+
+section#newQuestions .quiz-info:hover,
+section#newQuestions .questions.panel:hover {
+  background-color: #EEEEEE;
+}
+
+section#newQuestions .panel.buttons {
+  padding: 20px;
+}
+
+section#newQuestions .panel.buttons button {
+  margin-right: 5px;
+}
+
+section#newQuestions .panel.buttons label {
+  color: red;
+  margin-left: 10px;
+}
+
