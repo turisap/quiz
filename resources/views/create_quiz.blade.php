@@ -157,8 +157,8 @@
             // delete a new question
             $('body').on('click','.remove-question', function () {
                 var question = $(this).parents('.questions');
-                question.remove();
-                scrollOnAdding();
+                scrollOnRemoving();
+                question.fadeOut(1000);
             });
 
 
@@ -171,7 +171,7 @@
 
                 renameQuestions(extraQuestion);
                 scrollOnAdding();
-                //addRulesToNewInputs();
+                addRulesToNewInputs();
 
                 i++;
             });
@@ -227,7 +227,17 @@
             function scrollOnAdding()
             {
                 if (i > 2) {
-                    var target = $('footer');
+                    var target = $('#question' + (i-1));
+                    $('html, body').animate({
+                        scrollTop: $(target).offset().top
+                    }, 500);
+                }
+            }
+
+            function scrollOnRemoving()
+            {
+                if (i > 2) {
+                    var target = $('#question' + (i - 3));
                     $('html, body').animate({
                         scrollTop: $(target).offset().top
                     }, 500);
