@@ -239,3 +239,30 @@ section#newQuestions {
   }
 }
 
+
+/* ============================== PROFILE PAGE ========================================== */
+section#profileInfo {
+
+  #profilePicture{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      max-width: 60%;
+      max-height: 60%;
+      border-radius: 5px;
+    }
+  }
+  #img1, #img2, #img3, #img4 {
+    width: 15%;
+    position:absolute;
+  }
+  #img2 {
+    top: 30vw;
+    left: 5vh;
+  }
+  #img4{
+    right: 15%;
+  }
+}
+

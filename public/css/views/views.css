@@ -294,3 +294,40 @@ section#newQuestions .panel.buttons label {
   margin-left: 10px;
 }
 
+/* ============================== PROFILE PAGE ========================================== */
+
+section#profileInfo #profilePicture {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+section#profileInfo #profilePicture img {
+  max-width: 60%;
+  max-height: 60%;
+  border-radius: 5px;
+}
+
+section#profileInfo #img1,
+section#profileInfo #img2,
+section#profileInfo #img3,
+section#profileInfo #img4 {
+  width: 15%;
+  position: absolute;
+}
+
+section#profileInfo #img2 {
+  top: 30vw;
+  left: 5vh;
+}
+
+section#profileInfo #img4 {
+  right: 15%;
+}
+
