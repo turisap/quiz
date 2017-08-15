@@ -61,5 +61,10 @@ class AuthServiceProvider extends ServiceProvider
              return $user->isCreatedByMe($author_id);
         });
 
+        // allows a teacher to delete only it's own quizzes
+        Gate::define('can_delete', function ($user, $author_id) {
+            return $user->canDelete($author_id);
+        });
+
     }
 }

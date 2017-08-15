@@ -25,16 +25,20 @@
                 </div>
                 <div class="col-md-6" id="row-{{$quiz->id}}">
                     @if(auth()->check())
-                    @if(auth()->user()->student == 1)
-                        @can('ableUnlike', $quiz->id)
-                            <a href="#" class="unlike-quiz-btn pull-right" data-content="{{$quiz->id}}" id="{{$quiz->id}}-unlike"></a>
-                        @endcan
-                        @can('ableLike', $quiz->id)
-                            <a href="#" class="like-quiz-btn" data-content="{{$quiz->id}}" id="{{$quiz->id}}-like"></a>
-                        @endcan
-                    @else
-                        <a href="/quizzes/delete/{{$quiz->id}}"><i class="fa fa-trash-o fa-3x pull-right" aria-hidden="true"></i></a>
-                    @endif
+                        @if(auth()->user()->student == 1)
+                            @can('ableUnlike', $quiz->id)
+                                <a href="#" class="unlike-quiz-btn pull-right" data-content="{{$quiz->id}}" id="{{$quiz->id}}-unlike"></a>
+                            @endcan
+                            @can('ableLike', $quiz->id)
+                                <a href="#" class="like-quiz-btn" data-content="{{$quiz->id}}" id="{{$quiz->id}}-like"></a>
+                            @endcan
+                        @elseif(auth()->user()->teacher == 1 )
+                            @can('can_delete', $quiz->author_id)
+                                <a href="/quizzes/delete/{{$quiz->id}}"><i class="fa fa-trash-o fa-3x pull-right" aria-hidden="true"></i></a>
+                            @endcan
+                        @elseif(auth()->user()->admin == 1)
+                             <a href="/quizzes/delete/{{$quiz->id}}"><i class="fa fa-trash-o fa-3x pull-right" aria-hidden="true"></i></a>
+                        @endif
                     @endif
                 </div>
             </div>

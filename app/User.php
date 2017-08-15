@@ -209,5 +209,24 @@ class User extends Authenticatable
         return false;
     }
 
+    /**
+     * @param $quiz_id
+     * @return bool
+     *
+     * Checks whether a given quiz can be deleted by a logged in teacher
+     */
+    public function canDelete($author_id)
+    {
+        $my_quizzes = $this->rightsFor;
+
+        foreach ($my_quizzes as $my_quiz) {
+            //dd($my_quiz);
+            if ($my_quiz->author_id == $author_id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
 
