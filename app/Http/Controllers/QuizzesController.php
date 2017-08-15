@@ -8,9 +8,11 @@ use App\Repositories\QuizRepozitory;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use App\Repositories\QuizPhotos;
 
 class QuizzesController extends Controller
 {
+    use QuizPhotos;
 
     protected $liked;
 
@@ -30,15 +32,14 @@ class QuizzesController extends Controller
      */
     public function index(User $user)
     {
-        $ids = $user->likeds->pluck('quiz_id')->toArray();
-
-        $liked = QuizRepozitory::getAllUsersQuizzes($ids);
-
-        //dd($liked);
-
         if (Gate::denies('my_quizzes', $user->id)) {
             abort(403, 'Sorry, you don\'t have access to this page');
         }
+
+        $ids = $user->likeds->pluck('quiz_id')->toArray();
+        $liked = QuizRepozitory::getAllUsersQuizzes($ids);
+        $quizzes = static::getQuizzesPhoto($liked);
+        $liked  = $quizzes->chunk(6);
 
         return view('my_quizzes', compact('liked'));
     }

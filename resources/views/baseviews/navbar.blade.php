@@ -31,7 +31,14 @@
             </ul>
             @if(auth()->check())
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="right-nav"><a href="/profile/{{auth()->user()->id}}">{{auth()->user()->first_name}}</a></li>
+                    <li class="right-nav dropdown main">
+                        <a class="dropdown-toggle main" data-toggle="dropdown" role="button" aria-expanded="false">{{auth()->user()->first_name}}</a>
+                        <ul class="dropdown-menu" role="menu" id="profile">
+                            <li><a href="/profile/{{auth()->user()->id}}">Profile <i class="fa fa-cog" aria-hidden="true"></i></a></li>
+                            <li class="divider"></li>
+                            <li><a href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
                     @if(auth()->user()->teacher != 1 && auth()->user()->admin != 1)
                     <li id="myQuizzes"><a href="/myquizzes/{{auth()->user()->id}}" >My quizes</a></li>
                     @else

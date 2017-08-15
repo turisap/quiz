@@ -32,7 +32,7 @@ class QuizRepozitory
                 $liked[] = $user;
             }
         }
-        return collect($liked)->chunk(6);
+        return collect($liked);
     }
 
     /**

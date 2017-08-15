@@ -1,16 +1,5 @@
 @extends('baseviews/base')
 
-@section('home')
-    <div class="animated fadeIn">
-    <section id="homelanding" style="">
-        <form class="form-wrapper" action="/home/search" method="post">
-            {{csrf_field()}}
-            <input type="text" placeholder="Find your quiz.." required id="mainSearch" name="search_terms">
-        </form>
-    </section>
-    </div>
-@endsection
-
 @section('content')
     <section id="mostPopular">
         <div class="row">
