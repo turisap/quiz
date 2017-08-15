@@ -18,7 +18,7 @@ class TestController extends Controller
 
         return view('test', compact('url'));*/
 
-        return view('test');
+        return view('baseviews.404');
 
     }
 }

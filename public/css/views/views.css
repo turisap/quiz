@@ -68,12 +68,6 @@
   border-left: #ddd solid 1px;
 }
 
-.opaque {
-  opacity: 0 !important;
-  -webkit-transition: 0.5s ease-in-out;
-  transition: 0.5s ease-in-out;
-}
-
 /* ======================== HOMEPAGE STYLES ========================= */
 
 #homelanding {
