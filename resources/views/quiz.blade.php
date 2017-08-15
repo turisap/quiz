@@ -214,7 +214,7 @@
                 $(this).animate({opacity : 0});
                 setTimeout(function() {
                     $(self).dequeue('new_question')
-                }, 1000)
+                }, 1500)
             });
 
             wrap.queue('new_question', function () {
