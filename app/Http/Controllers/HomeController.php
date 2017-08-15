@@ -22,4 +22,21 @@ class HomeController extends Controller
 
         return view('home', compact('chunks'));
     }
+
+    // search from the top of the home page via ALGOLIA engine
+    public function search(Request $request)
+    {
+        // algolia's search
+        $results = Quiz::search($request->search_terms)->get();
+
+        foreach ($results as $result) {
+            $photo = $result->photo;
+            $result->photo = $photo;
+        }
+
+        $quizzes = static::getQuizzesPhoto($results);
+        $chunks  = $quizzes->chunk(4);
+
+        return view('search_results', compact('chunks'));
+    }
 }

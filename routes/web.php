@@ -5,6 +5,7 @@ Route::get('/p', 'PaymentsController@details');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
+Route::post('/home/search', 'HomeController@search');
 
 // categories group
 Route::group(['prefix' => 'categories'], function () {

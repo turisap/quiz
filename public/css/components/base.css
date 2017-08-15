@@ -52,6 +52,7 @@ footer p {
   left: 0;
   right: 0;
   z-index: 10000;
+  opacity: 0.3;
 }
 
 #mainNav {

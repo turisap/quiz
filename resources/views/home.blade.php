@@ -3,8 +3,9 @@
 @section('home')
     <div class="animated fadeIn">
     <section id="homelanding" style="">
-        <form class="form-wrapper">
-            <input type="text" placeholder="Find your quiz.." required id="mainSearch">
+        <form class="form-wrapper" action="/home/search" method="post">
+            {{csrf_field()}}
+            <input type="text" placeholder="Find your quiz.." required id="mainSearch" name="search_terms">
         </form>
     </section>
     </div>
@@ -62,7 +63,7 @@
     <section id="mostPopular">
         <div class="row">
             <div class="col-md-12 text-center">
-                <h2>The most popular quizzes</h2>
+                <h2 class="page-header">The most popular quizzes</h2>
             </div>
         </div>
         <div class="container-fluid">

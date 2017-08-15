@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Quiz extends Model
 {
+    use Searchable;
 
     protected $fillable = ['author_id', 'category_id', 'title', 'description', 'picture', 'premium', 'views'];
     /**
