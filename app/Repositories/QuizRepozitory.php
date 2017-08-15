@@ -256,4 +256,21 @@ class QuizRepozitory
         }
         return $result;
     }
+
+
+    /**
+     * @param Quiz $quiz
+     * @return array
+     *
+     * Returns an array with the numbers of right answers for a given quiz
+     */
+    public static function getRightAnswers(Quiz $quiz)
+    {
+        $questions = $quiz->questions;
+        $right_answers = [];
+        foreach ($questions as $question) {
+            array_push($right_answers, $question->answer);
+        }
+        return $right_answers;
+    }
 }

@@ -78,7 +78,7 @@ class TeachersController extends Controller
 
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing a quiz.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -93,11 +93,14 @@ class TeachersController extends Controller
         $questions = $quiz->questions;
         $categories = Category::all();
 
-        return view('quiz_edit', compact('quiz', 'questions', 'categories'));
+        // array of right answers
+        $right_answers = QuizRepozitory::getRightAnswers($quiz);
+
+        return view('quiz_edit', compact('quiz', 'questions', 'categories', 'right_answers'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update ta quiz in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
