@@ -18,7 +18,7 @@ class TestController extends Controller
 
         return view('test', compact('url'));*/
 
-        return view('baseviews.403');
+        dd(config('app.debug'));
 
     }
 }
