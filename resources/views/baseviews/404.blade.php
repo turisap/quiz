@@ -85,43 +85,32 @@
            first.animate({'top' : '-10px', 'left' : '-5px'}, 500).delay(300).animate({'top' : '0px', 'left' : '0px'}, 1500).delay(100)
                .animate({'top' : '-5px', 'left' : '+6px'}, 500).delay(800).animate({'top' : '0px', 'left' : '0px'}, 100).delay(600)
                .animate({'top' : '+4px', 'left' : '-9px'}, 700).delay(300).animate({'top' : '0px', 'left' : '0px'}, 300).delay(400)
+               .animate({'top' : '+8px', 'left' : '+6px'}, 500).delay(700).animate({'top' : '0px', 'left' : '0px'}, 500).delay(300);
 
-              // .animate({'top' : '+8px', 'left' : '+6px'}, 500).delay(700).animate({'top' : '0px', 'left' : '0px'}, 500).delay(300)
-             //  .animate({'top' : '7px', 'left' : '-3px'}, 900).delay(200).animate({'top' : '0px', 'left' : '0px'}, 500).delay(300)
-           ;
            second.animate({'top' : '-5px', 'left' : '+6px'}, 300).delay(600).animate({'top' : '0px', 'left' : '0px'}, 900).delay(300)
                .animate({'top' : '7px', 'left' : '+6px'}, 600).delay(300).animate({'top' : '0px', 'left' : '0px'}, 100).delay(800)
                .animate({'top' : '-9px', 'left' : '+6px'}, 700).delay(500).animate({'top' : '0px', 'left' : '0px'}, 500).delay(500)
-               .animate({'top' : '-9px', 'left' : '-9px'}, 200).delay(500).animate({'top' : '0px', 'left' : '0px'}, 500).delay(500)
-               //.animate({'top' : '5px', 'left' : '-8px'}, 800).delay(100).animate({'top' : '0px', 'left' : '0px'}, 100).delay(100)
-               //.animate({'top' : '-7px', 'left' : '+6px'}, 400).delay(800).animate({'top' : '0px', 'left' : '0px'}, 500).delay(300);
+               .animate({'top' : '-9px', 'left' : '-9px'}, 200).delay(800).animate({'top' : '0px', 'left' : '0px'}, 500).delay(500);
 
            third.animate({'top' : '8px', 'left' : '+6px'}, 600).delay(200).animate({'top' : '0px', 'left' : '0px'}, 100).delay(500)
                .animate({'top' : '2px', 'left' : '-8px'}, 300).delay(400).animate({'top' : '0px', 'left' : '0px'}, 1000).delay(900)
                .animate({'top' : '0px', 'left' : '+5px'}, 600).delay(400).animate({'top' : '0px', 'left' : '0px'}, 800).delay(300)
-
-             //  .animate({'top' : '-8px', 'left' : '-0px'}, 600).delay(500).animate({'top' : '0px', 'left' : '0px'}, 400).delay(100)
-             //  .animate({'top' : '+9px', 'left' : '+6px'}, 600).delay(400).animate({'top' : '0px', 'left' : '0px'}, 900).delay(600);
+               .animate({'top' : '-8px', 'left' : '-0px'}, 400).delay(500).animate({'top' : '0px', 'left' : '0px'}, 400).delay(100);
 
            fourth.animate({'top' : '5px', 'left' : '-6px'}, 400).delay(200).animate({'top' : '0px', 'left' : '0px'}, 400).delay(800)
                .animate({'top' : '6px', 'left' : '0px'}, 500).delay(600).animate({'top' : '0px', 'left' : '0px'}, 600).delay(1000)
                .animate({'top' : '-2px', 'left' : '+8px'}, 200).delay(400).animate({'top' : '0px', 'left' : '0px'}, 400).delay(600)
-               .animate({'top' : '-9px', 'left' : '-9px'}, 200).delay(500).animate({'top' : '0px', 'left' : '0px'}, 500).delay(500)
-             //  .animate({'top' : '0px', 'left' : '-4px'}, 300).delay(700).animate({'top' : '0px', 'left' : '0px'}, 900).delay(100)
-             //  .animate({'top' : '+5px', 'left' : '+6px'}, 800).delay(300).animate({'top' : '0px', 'left' : '0px'}, 400).delay(400);
+               .animate({'top' : '-9px', 'left' : '-9px'}, 200).delay(400).animate({'top' : '0px', 'left' : '0px'}, 500).delay(500);
 
            fifth.animate({'top' : '6px', 'left' : '-2px'}, 600).delay(300).animate({'top' : '0px', 'left' : '0px'}, 500).delay(300)
                .animate({'top' : '0px', 'left' : '10px'}, 700).delay(500).animate({'top' : '0px', 'left' : '0px'}, 400).delay(100)
                .animate({'top' : '-6px', 'left' : '2px'}, 800).delay(200).animate({'top' : '0px', 'left' : '0px'}, 100).delay(1300)
-             //  .animate({'top' : '10px', 'left' : '0px'}, 400).delay(500).animate({'top' : '0px', 'left' : '0px'}, 900).delay(400)
-             //  .animate({'top' : '5px', 'left' : '-4px'}, 500).delay(500).animate({'top' : '0px', 'left' : '0px'}, 700).delay(400);
+               .animate({'top' : '10px', 'left' : '0px'}, 400).delay(600).animate({'top' : '0px', 'left' : '0px'}, 900).delay(400);
 
            sixth.animate({'top' : '0px', 'left' : '-2px'}, 400).delay(200).animate({'top' : '0px', 'left' : '0px'}, 400).delay(300)
                .animate({'top' : '5px', 'left' : '5px'}, 300).delay(600).animate({'top' : '0px', 'left' : '0px'}, 500).delay(400)
                .animate({'top' : '-8px', 'left' : '9px'}, 300).delay(700).animate({'top' : '0px', 'left' : '0px'}, 600).delay(1400)
-               .animate({'top' : '-9px', 'left' : '-9px'}, 200).delay(500).animate({'top' : '0px', 'left' : '0px'}, 500).delay(500)
-               //.animate({'top' : '5px', 'left' : '-3px'}, 100).delay(900).animate({'top' : '0px', 'left' : '0px'}, 100).delay(200)
-               //.animate({'top' : '0px', 'left' : '-4px'}, 900).delay(400).animate({'top' : '0px', 'left' : '0px'}, 400).delay(400);
+               .animate({'top' : '-9px', 'left' : '-9px'}, 200).delay(700).animate({'top' : '0px', 'left' : '0px'}, 500).delay(500);
        })
 
     });
