@@ -62,7 +62,7 @@ class QuizRepozitory
         $title       =  $data['title']       ?? null;
         $description =  $data['description'] ?? null;
         $category    =  $data['category']    ?? null;
-        $premium     =  $data['premium'] ? 1 : null;
+        $premium     =  isset($data['premium']) ? 1 : 0;
         $file     =  $data['picture']     ?? null;
 
 

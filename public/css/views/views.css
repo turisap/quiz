@@ -186,6 +186,10 @@
   color: darkred;
 }
 
+section#newQuizButton {
+  margin-bottom: 19em;
+}
+
 /* ======================================= CATEGORY PAGE ============================================= */
 
 section#category {
