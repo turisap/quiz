@@ -194,7 +194,7 @@
          */
         function finishQuiz() {
             currentQuestion.html('You just finished this quiz! Congratulations!');
-            questionName.remove();
+            questionName.html('Congratulations!');
             label1.remove();
             label2.remove();
             label3.remove();
