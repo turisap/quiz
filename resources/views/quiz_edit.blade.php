@@ -99,7 +99,8 @@
             var i = 2;
             var form = $('#questionsForm');
             var stub = $('#stub');
-
+            var rightAnswers = '{{ $right_answers }}';
+            console.log(rightAnswers);
 
 
             form.validate({

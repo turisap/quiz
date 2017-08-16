@@ -94,7 +94,7 @@ class TeachersController extends Controller
         $categories = Category::all();
 
         // array of right answers
-        $right_answers = QuizRepozitory::getRightAnswers($quiz);
+        $right_answers = implode(QuizRepozitory::getRightAnswers($quiz), ',');
 
         return view('quiz_edit', compact('quiz', 'questions', 'categories', 'right_answers'));
     }
