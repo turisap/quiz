@@ -61,7 +61,6 @@
                                     <div class="col-md-12">
                                         @include('baseviews.panel_edit_question')
                                         <a href="/remove-question/{{$questions[$i]->id}}" id="{{$questions[$i]->id}}" class="question-remove">
-
                                         </a>
                                     </div>
                                 </div>
@@ -100,8 +99,8 @@
             var form = $('#questionsForm');
             var stub = $('#stub');
             var rightAnswers = '{{ $right_answers }}';
-            console.log(rightAnswers);
 
+            fillRightQuestions(rightAnswers);
 
             form.validate({
              rules : {
@@ -293,6 +292,21 @@
             // remove a question markup after getting a positive response from the server about deleting the respective record from the database
             function removeQuestionViaAjax(id){
                 $('#' + id).parents('.questions').remove();
+            }
+
+
+            // fill radiobuttons with right answers
+            function fillRightQuestions(rightAnswers){
+                var arr = rightAnswers.split(',');
+                var questions = $('.questions');
+                var counter = 0;
+
+                questions.each(function () {
+                    var rightAnswer = arr[counter];
+                    var rightButton = $(this).find('#rightAnswer' + counter + '-' + rightAnswer);
+                    rightButton.prop("checked", true);
+                    counter++;
+                })
             }
 
         });
