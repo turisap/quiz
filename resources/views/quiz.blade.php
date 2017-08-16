@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 panel">
                     <h3 class="page-header">{{$quiz->title}} <small>{{count($questions)}} questions</small></h3>
-                    <p>{{$quiz->description}}</p>
+                    <p class="lead">{{$quiz->description}}</p>
                 </div>
             </div>
         </div>
@@ -204,6 +204,7 @@
             $('#3').remove();
             $('#4').remove();
             $('#checkAnswer').remove();
+            wrapper.append("<img src='/images/static/pikachu.png' id='win'>");
         }
 
         function queuedAnimationAndNewQuestion(respond){

@@ -389,3 +389,53 @@ section#quizPlay #wrapper {
   min-height: 55vh;
 }
 
+img#win {
+  width: 30%;
+}
+
+@media (max-width: 576px) {
+  form.form-wrapper {
+    width: 100% !important;
+    height: 40px !important;
+    padding: 0px !important;
+  }
+
+  form.form-wrapper input {
+    height: 20px !important;
+  }
+
+  form.form-wrapper ::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    font-size: 10px !important;
+  }
+
+  form.form-wrapper ::-moz-placeholder {
+    /* Firefox 19+ */
+    font-size: 10px !important;
+  }
+
+  form.form-wrapper :-ms-input-placeholder {
+    /* IE 10+ */
+    font-size: 10px !important;
+  }
+
+  form.form-wrapper :-moz-placeholder {
+    /* Firefox 18- */
+    font-size: 10px !important;
+  }
+
+  section#howItWorks {
+    display: none;
+  }
+
+  section#mostPopular {
+    margin-top: 0;
+  }
+
+  section#mostPopular h2 {
+    font-size: 16px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+}
+
