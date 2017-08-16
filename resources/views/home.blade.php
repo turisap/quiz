@@ -63,7 +63,7 @@
     <section id="mostPopular">
         <div class="row">
             <div class="col-md-12 text-center">
-                <h2 class="page-header">The most popular quizzes</h2>
+                <h2 class="page-header"><i class="fa fa-star-o" aria-hidden="true"></i> The most popular quizzes <i class="fa fa-star-o" aria-hidden="true"></i></h2>
             </div>
         </div>
         <div class="container-fluid">

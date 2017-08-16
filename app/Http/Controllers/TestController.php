@@ -3,22 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Photo;
+use App\Quiz;
 use Illuminate\Support\Facades\Storage;
 use PayPal\Rest\ApiContext as PayPal;
 use App\User;
+use Faker\Generator as Faker;
 
 class TestController extends Controller
 {
-    public function index()
+    public function index(Faker $faker)
     {
-        /*$photo = Photo::find(8);
+        $quizzes = Quiz::all();
 
-        dd($photo);
-        $url = Storage::disk('public')->url('avatars/' . $photo->name);
+        foreach ($quizzes as $quiz) {
+            $author_id = $faker->biasedNumberBetween(2, 7);
+            $quiz->author_id = $author_id;
+            $quiz->save();
+        }
 
-        return view('test', compact('url'));*/
-
-        dd(config('app.debug'));
 
     }
 }
