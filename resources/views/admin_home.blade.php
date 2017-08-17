@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="page-header">All users of {{config('app.name')}}</h1>
+                    <h3 class="page-header">All users of {{config('app.name')}}</h3>
                 </div>
             </div>
         </div>
