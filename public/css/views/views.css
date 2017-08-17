@@ -393,6 +393,10 @@ img#win {
   width: 30%;
 }
 
+#searchResults {
+  margin-top: 0;
+}
+
 @media (max-width: 576px) {
   form.form-wrapper {
     width: 100% !important;
