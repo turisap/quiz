@@ -6,4 +6,5 @@ The appliction has the following features:
 - Students can fill information about their school, grade, etc. which can be used for preformance control puproses
 - Algolia engine search integrated
 - PayPal payment system integrated for buying premium accounts
+- Mailing Notification System
 
